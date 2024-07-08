@@ -4,11 +4,13 @@ _Hello, this script has many functions that can be manipulated based on your nee
 
 ## Permanent Items
 
-```
+{% code overflow="wrap" %}
+```lua
 PermanentItems = { -- ITEMS THAT JUST NEED TO HAVE IN INVENTORY WILL NOT REMOVE THEM WHEN CRAFTING
 ["hammer"] = true,
 ["shovel"] = true,
 }, 
 ```
+{% endcode %}
 
 Here are made&#x20;
