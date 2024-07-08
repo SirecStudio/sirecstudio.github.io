@@ -1,4 +1,4 @@
-# Permanent Items
+# 📃 Permanent Items
 
 **Permanent items means they may be needed in a recipe but will not be taken. They only require the presence in the inventory to create the recipe, for example for a recipe in which you want to create some nails, you needed an iron and a hammer. The iron will be consumed for the creation of the nails, the exchange of the hammer only requires its presence in the inventory for the creation of the nails, being a permanent object and not consumable.**
 
