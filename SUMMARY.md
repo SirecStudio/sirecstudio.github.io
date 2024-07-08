@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Page](README.md)
+* [SIREC STUDIO DOCS](README.md)
 * [SS-Crafting](<README (1).md>)
   * [📄 Understand the script](ss-crafting/understand-the-script.md)
   * [📃 Create a receipe](ss-crafting/create-a-receipe.md)
