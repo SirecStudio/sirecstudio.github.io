@@ -4,13 +4,7 @@
 
 ***
 
-{% hint style="info" %}
-**EXAMPLE !**
-{% endhint %}
-
-***
-
-**Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!**
+_**Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!**_
 
 {% code overflow="wrap" %}
 ```lua
@@ -36,7 +30,7 @@ Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
 ```
 {% endcode %}
 
-**In permanent items we have the hammer !**
+_**In permanent items we have the hammer !**_
 
 {% code overflow="wrap" %}
 ```lua
