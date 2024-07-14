@@ -6,9 +6,7 @@ Permanent items means they may be needed in a recipe but will not be taken. They
 
 Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!
 
-{% code overflow="wrap" %}
-```lua
-["nails"] = { -- RECEIPE NAME SHOULD BE SAME AS THE ITEM
+<pre class="language-lua" data-overflow="wrap"><code class="lang-lua">["nails"] = { -- RECEIPE NAME SHOULD BE SAME AS THE ITEM
 		Item = "nails", -- ITEM TO RECEIVE
 		Amount = 5, -- AMOUNT TO RECEIVE WHEN CRAFTED
 		Desc = "A simple nail !", -- ITEM DESCRIPTION AND INFO
@@ -23,19 +21,36 @@ Let's assume that we have this recipe to create nails, in which we have ironbar 
         	Metadata = false, -- ADD METADATA IF YES WICH ? false TURN IT OFF
         	Price = 100,
 Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
-	['ironbar'] = {amount = 2, returnItem = false, returnAmount = 1},
-	['hammer'] = {amount = 2, returnItem = false, returnAmount = 1},
+	['<a data-footnote-ref href="#user-content-fn-1">ironbar</a>'] = {<a data-footnote-ref href="#user-content-fn-2">amount = 2</a>, <a data-footnote-ref href="#user-content-fn-3">returnItem = false</a>, <a data-footnote-ref href="#user-content-fn-4">returnAmount = 1</a>},
+	['<a data-footnote-ref href="#user-content-fn-5">hammer</a>'] = {<a data-footnote-ref href="#user-content-fn-6">amount = 2</a>, <a data-footnote-ref href="#user-content-fn-7">returnItem = false</a>, <a data-footnote-ref href="#user-content-fn-8">returnAmount = 1</a>},
 	}
 },   
-```
-{% endcode %}
+</code></pre>
 
 In permanent items we have the hammer !
 
 <pre class="language-lua" data-overflow="wrap"><code class="lang-lua">PermanentItems = {
-    <a data-footnote-ref href="#user-content-fn-1">["hammer"] = true,</a>
-    ["shovel"] = true,
+    <a data-footnote-ref href="#user-content-fn-9">["hammer"] = true,</a>
+    <a data-footnote-ref href="#user-content-fn-10">["shovel"] = true,</a>
 }, 
 </code></pre>
 
-[^1]: \["ITEM"] = true/false
+[^1]: Item to take !
+
+[^2]: Amount to take
+
+[^3]: What item should return? item/false
+
+[^4]: Amount the of the returned item !
+
+[^5]: Item to take !
+
+[^6]: Amount to take
+
+[^7]: What item should return? item/false
+
+[^8]: Amount the of the returned item !
+
+[^9]: \["ITEM"] = true/false
+
+[^10]: \["ITEM"] = true/false
