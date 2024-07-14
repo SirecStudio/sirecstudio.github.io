@@ -4,7 +4,7 @@ Permanent items means they may be needed in a recipe but will not be taken. They
 
 ***
 
-_Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!_
+Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!
 
 {% code overflow="wrap" %}
 ```lua
@@ -30,13 +30,12 @@ Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
 ```
 {% endcode %}
 
-_In permanent items we have the hammer !_
+In permanent items we have the hammer !
 
-{% code overflow="wrap" %}
-```lua
-PermanentItems = { -- ITEMS THAT JUST NEED TO HAVE IN INVENTORY WILL NOT REMOVE THEM WHEN CRAFTING
-["hammer"] = true,
-["shovel"] = true,
+<pre class="language-lua" data-overflow="wrap"><code class="lang-lua">PermanentItems = {
+    <a data-footnote-ref href="#user-content-fn-1">["hammer"] = true,</a>
+    ["shovel"] = true,
 }, 
-```
-{% endcode %}
+</code></pre>
+
+[^1]: \["ITEM"] = true/false

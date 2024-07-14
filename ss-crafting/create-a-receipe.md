@@ -32,7 +32,7 @@ _This is what a predefined recipe looks like._
 
 ***
 
-_Here you must set the item you want to be crafted, and which you want the player to receive after finishing crafting the recipe!_
+Here you must set the item you want to be crafted, and which you want the player to receive after finishing crafting the recipe!
 
 ```lua
 	["itemcrafted"] = { -- RECEIPE NAME SHOULD BE SAME AS THE ITEM
@@ -41,7 +41,7 @@ _Here you must set the item you want to be crafted, and which you want the playe
 
 ***
 
-_Here you have to set the amount you want the player to receive after finishing crafting the recipe._
+Here you have to set the amount you want the player to receive after finishing crafting the recipe.
 
 ```lua
 		Amount = 2, -- AMOUNT TO RECEIVE WHEN CRAFTED
@@ -49,7 +49,7 @@ _Here you have to set the amount you want the player to receive after finishing 
 
 ***
 
-_Here are the information and description of the recipe such as the description of the item, its category which can be EX: doctor, tools, furniture etc etc, the level required to create this recipe and the experience it gives when finishing the craft.._
+Here are the information and description of the recipe such as the description of the item, its category which can be EX: doctor, tools, furniture etc etc, the level required to create this recipe and the experience it gives when finishing the craft..
 
 ```lua
 Desc = "description", -- ITEM DESCRIPTION AND INFO
@@ -60,7 +60,7 @@ Exp = 25, -- HOW MUCH EXPERIENCE TO ADD WHEN CRAFT
 
 ***
 
-_If the item is a weapon you will have to set true, if it is only an item you will have to set false._
+If the item is a weapon you will have to set true, if it is only an item you will have to set false.
 
 ```lua
 isGun = false, -- IS THIS ITEM A GUN ?
@@ -68,7 +68,7 @@ isGun = false, -- IS THIS ITEM A GUN ?
 
 ***
 
-_If this recipe requires a specific job or a specific degree, you will have to set the required job and degree, those who do not have this job or degree will not be able to craft this recipe even if they have the necessary materials and experience._
+If this recipe requires a specific job or a specific degree, you will have to set the required job and degree, those who do not have this job or degree will not be able to craft this recipe even if they have the necessary materials and experience.
 
 <pre class="language-lua"><code class="lang-lua"><strong>// FOR NO JOBS &#x26; GRADE 
 </strong><strong>Jobs = {}, -- WHAT JOBS CAN CRAFT THIS ITEM ? {} WILL ALLOW ANYBODY / {"jobname, "jobname"} WILL BE SHOWED ONLY TO THEM
@@ -80,7 +80,7 @@ _If this recipe requires a specific job or a specific degree, you will have to s
 
 ***
 
-_If you want this recipe to be crafted without problems and you can always set it to 100%, if you want the probability of crafting to be difficult and to fail, set the probability of success._
+If you want this recipe to be crafted without problems and you can always set it to 100%, if you want the probability of crafting to be difficult and to fail, set the probability of success.
 
 ```lua
 SuccessRate = 100, -- % CHANCE TO CRAFT THIS ITEM ?
@@ -89,7 +89,7 @@ Time = 5, -- TIME NEED TO WAIT
 
 ***
 
-_Some frameworks accept metadata for items, which you can set directly here, and upon completion of the craft, that item will already have predefined metadata._
+Some frameworks accept metadata for items, which you can set directly here, and upon completion of the craft, that item will already have predefined metadata.
 
 {% code overflow="wrap" %}
 ```lua
@@ -99,7 +99,7 @@ Metadata = {description = "TESTING : ", ["qty"] = 20}, -- ADD METADATA IF YES WI
 
 ***
 
-_Here you will have to set the necessary materials (items) for crafting this recipe, any desired materials can be added. A material can return another material after its use, if yes, set which and how many. A good example is to suppose that you need a bottle of water, you set the water bottle as an item and on return you can set an empty bottle._
+Here you will have to set the necessary materials (items) for crafting this recipe, any desired materials can be added. A material can return another material after its use, if yes, set which and how many. A good example is to suppose that you need a bottle of water, you set the water bottle as an item and on return you can set an empty bottle.
 
 ```lua
 	Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
