@@ -4,8 +4,8 @@
 
 <figure><img src=".gitbook/assets/Screenshot 2024-06-22 033750.png" alt=""><figcaption></figcaption></figure>
 
-* [**How to create a receipe ?**](ss-crafting/permanent-items.md)
-* [**Permanent Items ?**](ss-crafting/create-a-receipe.md)
+* [**How to create a receipe ?**](ss-crafting/create-a-receipe.md)
+* [**Permanent Items ?**](ss-crafting/permanent-items.md)
 * [**Create a book / workbench ?**](ss-crafting/create-a-book-workbench.md)
 
 ***
