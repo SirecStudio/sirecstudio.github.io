@@ -8,11 +8,11 @@ _This is what a predefined recipe looks like._
 
 {% code overflow="wrap" %}
 ```lua
-	["itemcrafted"] = { -- RECEIPE NAME SHOULD BE SAME AS THE ITEM
-		Item = "itemcrafted", -- ITEM TO RECEIVE
-		Amount = 2, -- AMOUNT TO RECEIVE WHEN CRAFTED
-		Desc = "description", -- ITEM DESCRIPTION AND INFO
-		Category = "medic", -- IN WICH CATEGORY SHOULD ADD THE EXP ?
+["nails"] = { -- RECEIPE NAME SHOULD BE SAME AS THE ITEM
+		Item = "nails", -- ITEM TO RECEIVE
+		Amount = 5, -- AMOUNT TO RECEIVE WHEN CRAFTED
+		Desc = "A simple nail !", -- ITEM DESCRIPTION AND INFO
+		Category = "tools", -- IN WICH CATEGORY SHOULD ADD THE EXP ?
 		Level = 0, -- LVL NEED TO CAN CRAFT THIS ITEM
 		Exp = 25, -- HOW MUCH EXPERIENCE TO ADD WHEN CRAFT
 		isGun = false, -- IS THIS ITEM A GUN ?
@@ -22,11 +22,11 @@ _This is what a predefined recipe looks like._
 		Time = 5, -- TIME NEED TO WAIT
         	Metadata = false, -- ADD METADATA IF YES WICH ? false TURN IT OFF
         	Price = 100,
-	Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
-		['bread'] = {amount = 2, returnItem = false, returnAmount = 1},
-		['beer'] = {amount = 2, returnItem = false, returnAmount = 1},
-		}
-	},   
+Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
+	['ironbar'] = {amount = 2, returnItem = false, returnAmount = 1},
+	['hammer'] = {amount = 2, returnItem = false, returnAmount = 1},
+	}
+},   
 ```
 {% endcode %}
 
