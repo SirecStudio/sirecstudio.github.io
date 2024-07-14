@@ -2,7 +2,7 @@
 
 <figure><img src=".gitbook/assets/COVER2.png" alt="" width="563"><figcaption></figcaption></figure>
 
-* [**How to create a receipe ?**](<README (1).md#how-to-create-a-receipe>)
+* [**How to create a receipe ?**](ss-crafting/create-a-receipe.md)
 * **Ho to block some receipes on an book/workbench ?**
 
 ***
