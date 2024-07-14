@@ -1,9 +1,12 @@
 # SS-Crafting
 
-<figure><img src=".gitbook/assets/COVER2.png" alt="" width="563"><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/COVER2.png" alt=""><figcaption><p>CRAFTING SYSTEM</p></figcaption></figure>
+
+<figure><img src=".gitbook/assets/Screenshot 2024-06-22 033750.png" alt=""><figcaption></figcaption></figure>
 
 * [**How to create a receipe ?**](ss-crafting/create-a-receipe.md)
-* **Ho to block some receipes on an book/workbench ?**
+* [**Permanent Items ?**](ss-crafting/permanent-items.md)
+* [**Create a book / workbench ?**](ss-crafting/create-a-book-workbench.md)
 
 ***
 
