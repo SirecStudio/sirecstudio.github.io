@@ -1,10 +1,10 @@
 # 📃 Permanent Items
 
-**Permanent items means they may be needed in a recipe but will not be taken. They only require the presence in the inventory to create the recipe, for example for a recipe in which you want to create some nails, you needed an iron and a hammer. The iron will be consumed for the creation of the nails, the exchange of the hammer only requires its presence in the inventory for the creation of the nails, being a permanent object and not consumable.**
+Permanent items means they may be needed in a recipe but will not be taken. They only require the presence in the inventory to create the recipe, for example for a recipe in which you want to create some nails, you needed an iron and a hammer. The iron will be consumed for the creation of the nails, the exchange of the hammer only requires its presence in the inventory for the creation of the nails, being a permanent object and not consumable.
 
 ***
 
-_**Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!**_
+_Let's assume that we have this recipe to create nails, in which we have ironbar and hammer as materials. The ironban will be consumed and will disappear from the inventory, instead the hammer will remain and only the presence will be necessary!_
 
 {% code overflow="wrap" %}
 ```lua
@@ -30,7 +30,7 @@ Ingredients = { -- WHAT INGREDIENTS NEED TO CRAFT THIS RECEIPE
 ```
 {% endcode %}
 
-_**In permanent items we have the hammer !**_
+_In permanent items we have the hammer !_
 
 {% code overflow="wrap" %}
 ```lua
