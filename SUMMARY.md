@@ -10,3 +10,4 @@
 * [SS-Telegram](ss-telegram/README.md)
   * [Send a telegram](ss-telegram/send-a-telegram.md)
   * [Receive a telegram](ss-telegram/receive-a-telegram.md)
+  * [Saved telegram](ss-telegram/saved-telegram.md)
