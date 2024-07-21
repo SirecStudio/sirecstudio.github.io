@@ -8,4 +8,5 @@
 * [SS-Metabolism](ss-metabolism/README.md)
   * [Preview](ss-metabolism/preview.md)
 * [SS-Telegram](ss-telegram/README.md)
-  * [Send a Telegram !](ss-telegram/send-a-telegram.md)
+  * [Send a telegram](ss-telegram/send-a-telegram.md)
+  * [Receive a telegram](ss-telegram/receive-a-telegram.md)
