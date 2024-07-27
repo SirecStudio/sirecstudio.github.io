@@ -14,3 +14,4 @@
   * [Receive a telegram](ss-telegram/receive-a-telegram.md)
   * [Saved telegram](ss-telegram/saved-telegram.md)
 * [SS-Farming](ss-farming.md)
+* [SS-IdentityCard](ss-identitycard.md)
