@@ -9,5 +9,4 @@ LANGUAGES SUPPORTED
 * Tedesco (DE)
 * Portoghese (PT)
 * Russo (RU)
-* Giapponese (JA)
-* Cinese (ZH)
+* Romanian (RO)
