@@ -17,3 +17,5 @@
   * [Saved telegram](ss-telegram/saved-telegram.md)
 * [SS-Farming](ss-farming.md)
 * [SS-IdentityCard](ss-identitycard.md)
+* [SS-LuckyTicket](ss-luckyticket/README.md)
+  * [Configuration File](ss-luckyticket/configuration-file.md)
