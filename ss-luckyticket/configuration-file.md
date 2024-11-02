@@ -2,6 +2,7 @@
 
 
 
+{% code overflow="wrap" %}
 ```lua
 -- Author Sirec Studio -- 
 -- REPORT ANY BUGS ON https://discord.gg/9XNBaQSmMd --
@@ -83,3 +84,4 @@ function NOTIFY(text) --SET YOUR NOTIFICATIONS
 	TriggerEvent("vorp:TipBottom", text, 5000) 
 end 
 ```
+{% endcode %}
