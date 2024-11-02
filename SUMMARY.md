@@ -19,5 +19,5 @@
 * [SS-IdentityCard](ss-identitycard.md)
 * [SS-LuckyTicket](ss-luckyticket/README.md)
   * [Configuration File](ss-luckyticket/configuration-file.md)
-* [SS-Bank](ss-bank.md)
-* [Configuration File](configuration-file.md)
+* [SS-Bank](ss-bank/README.md)
+  * [Configuration File](ss-bank/configuration-file.md)

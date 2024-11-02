@@ -2,7 +2,7 @@
 
 
 
-<figure><img src=".gitbook/assets/RESIZE.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/RESIZE.png" alt=""><figcaption></figcaption></figure>
 
 The _SS-Bank_ script offers robust banking features for players, including account management, loan processing, security settings, tax and salary options, and custom notifications. This guide provides a detailed explanation of each configuration setting to help you customize the bank’s functionality to suit your server.
 
