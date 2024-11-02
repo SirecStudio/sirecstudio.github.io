@@ -15,3 +15,5 @@
   * [Saved telegram](ss-telegram/saved-telegram.md)
 * [SS-Farming](ss-farming.md)
 * [SS-IdentityCard](ss-identitycard.md)
+* [SS-Core](ss-core/README.md)
+  * [How to Configure the SS-CORE](ss-core/how-to-configure-the-ss-core.md)
