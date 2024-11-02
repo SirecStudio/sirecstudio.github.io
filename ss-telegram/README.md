@@ -1,5 +1,6 @@
 ---
 description: Configuration and Usage Guide for the SS-Telegram Script in RedM
+hidden: true
 ---
 
 # SS-Telegram

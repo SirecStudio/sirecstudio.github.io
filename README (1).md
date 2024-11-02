@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # SS-Crafting
 
 <figure><img src=".gitbook/assets/COVER2.png" alt=""><figcaption><p>CRAFTING SYSTEM</p></figcaption></figure>

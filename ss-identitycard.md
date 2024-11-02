@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # SS-IdentityCard
 
 LANGUAGES SUPPORTED

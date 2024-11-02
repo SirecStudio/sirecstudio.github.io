@@ -1,6 +1,8 @@
 # Table of contents
 
 * [SIREC STUDIO DOCS](README.md)
+* [SS-Core](ss-core/README.md)
+  * [How to Configure the SS-CORE](ss-core/how-to-configure-the-ss-core.md)
 * [SS-Crafting](<README (1).md>)
   * [📃 Create a receipe](ss-crafting/create-a-receipe.md)
   * [📃 Permanent items](ss-crafting/permanent-items.md)
@@ -15,5 +17,3 @@
   * [Saved telegram](ss-telegram/saved-telegram.md)
 * [SS-Farming](ss-farming.md)
 * [SS-IdentityCard](ss-identitycard.md)
-* [SS-Core](ss-core/README.md)
-  * [How to Configure the SS-CORE](ss-core/how-to-configure-the-ss-core.md)
