@@ -4,6 +4,10 @@ description: The Heart of Our Scripts
 
 # SS-Core
 
+
+
+<figure><img src="../.gitbook/assets/SS CORE.png" alt=""><figcaption></figcaption></figure>
+
 Our SS-_CORE_ script is the essential foundation that powers and coordinates all other scripts in our RedM suite. Designed as a centralized support system, the _CORE_ provides a unified and versatile interface, ensuring each script can operate optimally regardless of the underlying framework (such as RSG, VORP, etc.). Thanks to the SS-_CORE_, users can benefit from a consistent setup and streamlined management of features.
 
 
