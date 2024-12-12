@@ -25,6 +25,7 @@ Config = {
     
     -- Check Settings
 	UseCheck = true, -- Enable check system ?
+    MinAmount = 500, -- Min amount to sign a check, 0 di disable
     PricePerCheck = 10, -- Price to pay for every check, false to disable and being free
     CheckItem = "water", -- Check item to use 
 	MaxCheckRequests = 10, -- Max checks a player can ask
@@ -33,6 +34,7 @@ Config = {
     -- History Settings
     UseHistory = true, -- Enable Transaction history (You need have the sql for bank_history)
     DeleteAfterDays = 30, -- Auto delete transactions after X days ! (Helps cleaning database)
+    
     
     -- Tax Settings
     UseTax = true, -- Enable taxes for players
