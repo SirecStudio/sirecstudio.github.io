@@ -16,7 +16,8 @@ The **SS-Bank System** is a powerful and immersive script for RedM servers, desi
 
 1. **Bank Director Role**:
    * Control the bank's operations.
-   * Manage customer accounts, loans, and transaction policies
+   * Manage customer accounts, loans, and transaction policies.
+   * Check customers security box.
 2. **Comprehensive Banking Services**:
    * Deposit and withdraw money.
    * Use checks for trading and payments.

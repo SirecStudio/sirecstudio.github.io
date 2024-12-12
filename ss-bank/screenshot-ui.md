@@ -14,7 +14,7 @@
 {% endtab %}
 
 {% tab title="Director UI" %}
-<figure><img src="../.gitbook/assets/Screenshot 2024-12-12 100622.png" alt=""><figcaption><p>Bank Management from Director Backend</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2024-12-12 191546.png" alt=""><figcaption><p>Bank Management from Director Backend</p></figcaption></figure>
 
 
 {% endtab %}
