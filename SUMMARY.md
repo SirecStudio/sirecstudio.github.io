@@ -24,3 +24,4 @@
   * [Configuration File](ss-bank/configuration-file.md)
   * [Configuration Helps](ss-bank/configuration-helps.md)
   * [Setup Instructions](ss-bank/setup-instructions.md)
+  * [Screenshot UI](ss-bank/screenshot-ui.md)
