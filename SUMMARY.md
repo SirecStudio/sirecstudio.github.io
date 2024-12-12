@@ -22,3 +22,5 @@
   * [Use Custom Images](ss-luckyticket/use-custom-images.md)
 * [SS-Bank](ss-bank/README.md)
   * [Configuration File](ss-bank/configuration-file.md)
+  * [Configuration Helps](ss-bank/configuration-helps.md)
+  * [Setup Instructions](ss-bank/setup-instructions.md)
