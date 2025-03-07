@@ -11,6 +11,7 @@
 * [SS-Metabolism](ss-metabolism/README.md)
   * [Preview](ss-metabolism/preview.md)
   * [Configuration File](ss-metabolism/configuration-file.md)
+  * [Configuration Helps](ss-metabolism/configuration-helps.md)
 * [SS-Telegram](ss-telegram/README.md)
   * [Configuration File](ss-telegram/configuration-file.md)
   * [Send a telegram](ss-telegram/send-a-telegram.md)
