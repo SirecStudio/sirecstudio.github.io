@@ -10,6 +10,7 @@
   * [Configuration File](ss-crafting/configuration-file.md)
 * [SS-Metabolism](ss-metabolism/README.md)
   * [Preview](ss-metabolism/preview.md)
+  * [Configuration File](ss-metabolism/configuration-file.md)
 * [SS-Telegram](ss-telegram/README.md)
   * [Configuration File](ss-telegram/configuration-file.md)
   * [Send a telegram](ss-telegram/send-a-telegram.md)

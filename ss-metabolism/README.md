@@ -1,6 +1,5 @@
 ---
 description: SS-Metabolism system docs
-hidden: true
 ---
 
 # SS-Metabolism
