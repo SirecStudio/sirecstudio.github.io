@@ -21,23 +21,12 @@ Follow these steps to properly configure the _SS-CORE_ script on your RedM serve
 
 #### Step 4: Enable SS-Core in server.cfg
 
-1. After setting up the previous configurations, add `ensure SS-Core` in your `server.cfg` file.
-2. **Important**: Do not ensure other SS scripts directly in `server.cfg`. Only `SS-Core` should be ensured this way, as it will manage other scripts automatically.
-
-#### Step 5: Using the CORE Panel
-
-1. To manually start or stop scripts while you’re on the server, type `/sscore` in the server’s command line. This opens the SS-CORE panel, where you can control all linked scripts.
-
-#### Step 6: Autostart Scripts (Optional)
-
-1. If you prefer to autostart scripts downloaded from our website, open `config.lua` in `SS-Core`.
-2. Set `Autostart = true` to have the SS-CORE automatically launch compatible scripts at server start.
+1. After setting up the previous configurations, add `ensure SS-Core` in your `server.cfg` file. And all the others SS scripts must be below SS-Core.
 
 ***
 
 #### Important Notes
 
-* **Only SS-Core**: Ensure only `SS-Core` in your `server.cfg`. All other SS scripts are managed through this central script.
-* **CORE Panel**: Remember that access to the CORE panel is managed via the Steam ID you set in `SteamAccess`.
+* In fxmanifest.lua you can choice the framework !
 
 By following these steps, your _SS-CORE_ script should be correctly configured and ready to manage all other scripts smoothly on your server.
