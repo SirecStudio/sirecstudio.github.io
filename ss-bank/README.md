@@ -1,5 +1,6 @@
 ---
 description: SS-Bank System Script Documentation
+hidden: true
 ---
 
 # SS-Bank

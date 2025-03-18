@@ -28,3 +28,8 @@
   * [Setup Instructions](ss-bank/setup-instructions.md)
   * [Screenshot UI](ss-bank/screenshot-ui.md)
   * [SQL](ss-bank/sql.md)
+* [SS-JoinScene](ss-joinscene/README.md)
+  * [Preview](ss-joinscene/preview.md)
+  * [Configuration File](ss-joinscene/configuration-file.md)
+  * [Configuration Helps](ss-joinscene/configuration-helps.md)
+  * [Change logs](ss-joinscene/change-logs.md)

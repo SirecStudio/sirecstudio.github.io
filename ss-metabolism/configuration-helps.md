@@ -1,6 +1,6 @@
 # Configuration Helps
 
-#### Configuration Options
+### **Configuration Options**
 
 Below are the customizable options available in the `config.lua` file:
 
