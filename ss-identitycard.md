@@ -4,7 +4,7 @@ description: SS-IdentityCard documentation
 
 # SS-IdentityCard
 
-<figure><img src="../.gitbook/assets/identity_discord.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/identity_discord.png" alt=""><figcaption></figcaption></figure>
 
 **Overview**
 

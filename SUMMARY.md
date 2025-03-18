@@ -18,7 +18,7 @@
   * [Receive a telegram](ss-telegram/receive-a-telegram.md)
   * [Saved telegram](ss-telegram/saved-telegram.md)
 * [SS-Farming](ss-farming.md)
-* [SS-IdentityCard](ss-identitycard/README.md)
+* [SS-IdentityCard](ss-identitycard.md)
   * [Preview](ss-identitycard/preview.md)
   * [Configuration File](ss-identitycard/configuration-file.md)
   * [Configuration Helps](ss-identitycard/configuration-helps.md)
