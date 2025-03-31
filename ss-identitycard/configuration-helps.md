@@ -1,8 +1,6 @@
 # Configuration Helps
 
-### **Configuration Options**
-
-#### **1. General Settings:**
+#### **General Settings**
 
 * **Dev Mode:** `Dev = true` – Enables debug mode for testing. Set to `false` for production.
 * **Language:** `Language = "EN"` – Choose from available language files in `l/l.lua`.
@@ -10,7 +8,9 @@
 * **Menu Alignment:** `Align = "right"` – Set to `"left"` or `"right"` based on preference.
 * **Server Name Display:** `ServerName = "Sirec Studio"` – This text appears on ID cards under the photo.
 
-#### **2. Identity System Configuration:**
+
+
+#### **Identity System Configuration**
 
 * **Identity Card Item Name:** `IdentityCardItem = "identitycard"` – Defines the in-game item name for the ID.
 * **Registration Cost:** `PayRegistration = 5` – Cost of registering an ID. Set to `false` to disable.
@@ -18,7 +18,7 @@
 * **Update Info Cost:** `PayInfoUpdate = 1` – Fee for updating details on the ID.
 * **Image Upload:** `AllowImageInGame = true` – Enable or disable in-game ID photo updates.
 
-#### **3. Fake Identity System:**
+#### **Fake Identity System**
 
 * **Fake ID Item Name:** `FakeIdentityCardItem = "salt"` – Defines the fake ID item name.
 * **Fake ID Cost:** `PayFakeId = 250` – Cost of purchasing a fake identity card.
