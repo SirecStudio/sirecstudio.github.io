@@ -1,12 +1,8 @@
 # Configuration Helps
 
-### **Configuration Options**
-
-Below are the customizable options available in the `config.lua` file:
-
 ***
 
-#### 1. General Settings:
+### General Settings
 
 * **Dev Mode**: `Dev = true` - Enables debug mode for testing; set to `false` for production.
 * **Set HUD Command**: `CommandSetHud = "sethud"` - Allows players to move and save HUD icon positions with `ESC`.
@@ -15,7 +11,7 @@ Below are the customizable options available in the `config.lua` file:
 
 ***
 
-#### 2. Initial Metabolism Values:
+### Initial Metabolism Values:
 
 When a player joins the server, their metabolism stats start with:
 
@@ -26,7 +22,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 3. System Features:
+### System Features:
 
 * **Health & Stamina Tracking**:
   * `UseHealthStamina = false` - Disables health & stamina tracking.
@@ -42,7 +38,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 4. Horse Metabolism:
+### Horse Metabolism:
 
 * **Horse Metabolism Decay**:
   * `HorseStats = true` - Enables horse metabolism tracking.
@@ -50,7 +46,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 5. Temperature System:
+### Temperature System:
 
 * **Temperature Range**: `Temperature = {3, 35}` - Defines the min/max temperature in the game.
 * **Temperature Effects on Metabolism**:
@@ -65,7 +61,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 6. Metabolism Changes by Activity:
+### Metabolism Changes by Activity:
 
 * `Idle`: `Thirsty = 0.4, Hungry = 0.3, Stress = 0`
 * `Walking`: `Thirsty = 0.7, Hungry = 0.6, Stress = 0`
@@ -77,7 +73,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 7. Health Effects:
+### Health Effects:
 
 * `KillWhenZero = false` - Determines if a player should die when hunger or thirst reaches 0.
 * `DecreaseByStress = 0.2` - Defines how much stress affects hunger & thirst as a percentage.
@@ -89,7 +85,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 8. Stress System:
+### Stress System:
 
 * `StressRagdoll = true` - Enables ragdoll effect due to stress.
 * `RagDollObjects = true` - Players ragdoll when running into objects (chance: 85%).
@@ -100,7 +96,7 @@ When a player joins the server, their metabolism stats start with:
 
 ***
 
-#### 9. Exports (For Developers):
+### Exports (For Developers):
 
 These exports allow other scripts to interact with SS-Metabolism:
 
@@ -130,7 +126,7 @@ These exports allow other scripts to interact with SS-Metabolism:
 
 ***
 
-#### 10. Notifications:
+### Notifications:
 
 * `NOTIFY(text)` - Calls a notification with `TriggerEvent("vorp:TipBottom", text, 5000)`.
 

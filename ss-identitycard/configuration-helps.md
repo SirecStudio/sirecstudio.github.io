@@ -1,6 +1,6 @@
 # Configuration Helps
 
-#### **General Settings**
+### General Options
 
 * **Dev Mode:** `Dev = true` – Enables debug mode for testing. Set to `false` for production.
 * **Language:** `Language = "EN"` – Choose from available language files in `l/l.lua`.
@@ -10,7 +10,7 @@
 
 
 
-#### **Identity System Configuration**
+### I**dentity System Configuration**
 
 * **Identity Card Item Name:** `IdentityCardItem = "identitycard"` – Defines the in-game item name for the ID.
 * **Registration Cost:** `PayRegistration = 5` – Cost of registering an ID. Set to `false` to disable.
@@ -18,7 +18,7 @@
 * **Update Info Cost:** `PayInfoUpdate = 1` – Fee for updating details on the ID.
 * **Image Upload:** `AllowImageInGame = true` – Enable or disable in-game ID photo updates.
 
-#### **Fake Identity System**
+### **Fake Identity System**
 
 * **Fake ID Item Name:** `FakeIdentityCardItem = "salt"` – Defines the fake ID item name.
 * **Fake ID Cost:** `PayFakeId = 250` – Cost of purchasing a fake identity card.
@@ -27,7 +27,7 @@
   * `Only1FakeId = false` – If `true`, players can only have **one fake ID** at a time.
   * `PayDeleteFakeId = 1000` – Cost to delete a fake identity from the system.
 
-#### **4. Economy & Police Settings:**
+### E**conomy & Police Settings**
 
 * **Fine Payments to Police:** `SynSociety = "police"` – Determines where fine payments go. Set to `false` to disable.
 * **Blacklist Jobs:** `BlackListJobs = {"police", "marshal"}` – These jobs will not appear on ID cards.
@@ -35,7 +35,7 @@
 * **Fake ID Default Job:** `FakeIdDefaultJob = "Unemployed"` – Job title that appears on fake IDs.
 * **Allowed Police View Access:** `PoliceJobs = false` – Define which jobs can view identity details.
 
-#### **5. National Registration Offices:**
+### N**ational Registration Offices**
 
 Each registration office has the following settings:
 
