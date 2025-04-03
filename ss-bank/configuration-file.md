@@ -1,5 +1,7 @@
 # Configuration File
 
+### config.lua
+
 {% code overflow="wrap" %}
 ```lua
 -- Author: SIREC
@@ -11,25 +13,26 @@ Config = {
     WebHook = "", -- Webhook URL for logging
     Dev = true, -- Set to `true` for testing; `false` for production
     Language = "EN", -- Language (check `l/l.lua` for available options)
-    ServerYear = 1885,
+    WaitingAnime = false, -- Enable Random Waiting Animation while using bank ? 8 for female, 8 for male (RP Improve)
+    ServerYear = 1899,
 
     -- Interaction Buttons
     BankButton = 0x760A9C6F, -- Open Bank Button
     SecurityButton = 0x9959A6F0, -- Open Security Stash Button
     ExchangeButton = 0xD9D0E1C0, -- Exchange Button
-    CheckButton = 0x4BC9DABB, -- Ask checks button
+    CheckButton = 0x4BC9DABB, -- Ask checks buttont/t
 
     -- Account Management
-    CanLock = true, -- Allow Director to freeze player accounts
+    CanLock = false, -- Allow Director to freeze player accounts
     GoldBarItem = "goldbar", -- Item used for gold bar exchange
     
     -- Check Settings
 	UseCheck = true, -- Enable check system ?
-    MinAmount = 500, -- Min amount to sign a check, 0 di disable
-    PricePerCheck = 10, -- Price to pay for every check, false to disable and being free
-    CheckItem = "water", -- Check item to use 
+    MinAmount = 5, -- Min amount to sign a check, 0 di disable
+    PricePerCheck = 2, -- Price to pay for every check, false to disable and being free
+    CheckItem = "cocoa", -- Check item to use 
 	MaxCheckRequests = 10, -- Max checks a player can ask
-	AlertPolice = true, -- Alert Police when somebody try deposit a check of somebody else ?
+	AlertPolice = false, -- Alert Police when somebody try deposit a check of somebody else ?
     
     -- History Settings
     UseHistory = true, -- Enable Transaction history (You need have the sql for bank_history)
@@ -37,7 +40,7 @@ Config = {
     
     
     -- Tax Settings
-    UseTax = true, -- Enable taxes for players
+    UseTax = false, -- Enable taxes for players
     TaxTime = 7, -- Interval (days) for tax collection
     TaxPrice = 1, -- Tax percentage (e.g., 1% of $50,000 is $500)
     TaxWithdraw = 1, -- Tax percentage on withdrawals
@@ -52,8 +55,8 @@ Config = {
 
     -- Loan Settings
     Loans = {
-        SSArchives = true, -- Allow loans only if the player has no dossiers (requires SS-Archives)
-        SSIdentityCard = true, -- Require an identity card for loans (requires SS-IdentityCard)
+        SSArchives = false, -- Allow loans only if the player has no dossiers (requires SS-Archives)
+        SSIdentityCard = false, -- Require an identity card for loans (requires SS-IdentityCard)
         Jobs = { -- Jobs allowed to take loans
             "Serif", "Maresal", "Judecator", "Guvernator", "PolitiaFederala", "Detectiv",
             "PolitieFrontiera", "VanatorRecompense", "Medic", "Shaman", "Armurier",
@@ -73,7 +76,7 @@ Config = {
     -- Bank Configurations
     Banks = {
         [1] = {
-            Name = "Banca Rhodes Union", -- Bank Name
+            Name = "NewHorizon Bank Rhodes", -- Bank Name
             Id = 1, -- Bank ID (used in SS-BankHeist)
             Active = true, -- Enable or disable this bank
             Bank = "Rhodes", -- Internal identifier (do not change)
@@ -86,9 +89,9 @@ Config = {
             Distance = 2.5, -- Interaction distance
         },
         [2] = {
-            Name = "Banca Saint Denis Union",
+            Name = "NewHorizon Bank Sant Denise",
             Id = 2,
-            Active = true,
+            Active = false,
             Bank = "Saint Denis",
             Stash = 300,
             Pos = {2645.07, -1294.01, 51.35, 21.85},
@@ -99,27 +102,27 @@ Config = {
             Distance = 2.5,
         },
         [3] = {
-            Name = "Banca Valentine Union",
+            Name = "NewHorizon Bank Valentine",
             Id = 3,
             Active = true,
             Bank = "Valentine",
             Stash = 300,
             Pos = {-308.01, 773.92, 117.80, 13.64},
             Director = {-308.85, 767.31, 118.49},
-            Job = "PrimarValentine",
+            Job = "bankVT",
             Npc = "s_m_m_bankclerk_01",
             Blip = -2128054417,
             Distance = 2.5,
         },
         [4] = {
-            Name = "Banca Blackwater Union",
+            Name = "NewHorizon Bank Blackwater",
             Id = 4,
             Active = true,
             Bank = "Blackwater",
             Stash = 300,
             Pos = {-813.34, -1277.52, 43.64, 351.36},
             Director = {-820.71, -1278.61, 43.64, 349.08},
-            Job = "Guvernator",
+            Job = "bankBW",
             Npc = false,
             Blip = -2128054417,
             Distance = 1.5,
@@ -134,14 +137,79 @@ end
 
 -- Police Notification
 function AlertPolice(bank, coords)
-    --local coords = {x = coords.x, y = coords.y, z = coords.z}
-    --local notify = "POLICE NOTIFY !"
-    --local bliptype = 1366733613
-    --local blipradius = 30.0
-    --local blipname = "POLICE BLIP !"
-    --local blipremove = 10
-    --exports["SS-PoliceJob"]:PoliceAlert(coords, notify, blipradius, bliptype, blipname, blipremove)
+    local coords = {x = coords.x, y = coords.y, z = coords.z}
+    local notify = "Notify of an possible FRAUD at Bank"..bank
+    local bliptype = 1366733613
+    local blipradius = 30.0
+    local blipname = "Fraud Bank"
+    local blipremove = 10
+    exports["SS-PoliceJob"]:PoliceAlert(coords, notify, blipradius, bliptype, blipname, blipremove)
 end    
 ```
 {% endcode %}
 
+### config.js
+
+```javascript
+TR = {
+    loans_tittle: "LOANS REQUESTS",
+    all_customers: "CUSTOMERS",
+    dir_bank_account: "BANK BUGET",
+    dir_salary: "DIRECTOR SALARY",
+    trmoneyaccount: "MONEY ACCOUNT",
+	trdepositmoney: "DEPOSIT",
+    withdrawmoney: "WITHDRAW",
+    trgoldaccount: "GOLD ACCOUNT",
+	depositgold: "DEPOSIT",
+	withdrawgold: "WITHDRAW",
+	marketbuygold: "MARKET BUY GOLD",
+    buygold: "BUY",
+    marketsellgold: "MARKET SELL GOLD",
+    sellgold: "SEL",
+    unionbankloans: "UNION BANKS LOANS",
+    activeloans: "YOUR ACTIVE LOANS",
+    askloan: "ASK LOAN",
+    wantloan: " wants ",
+    loanaccept: "Accept",
+    loandecline: "Decline",
+    
+    //NEW
+    checkTittle: "Bank Check Of",
+    checkPay: "PAY TO THE ORDER OF: ",
+    checkReceive: "INTENDED TO: ",
+    checkReceiverInfo: "Name or leave empty for white check",
+    checkAmount: "AMOUNT: $",
+    checkMemo: "MEMO: ",
+    checkDescInfo: "Description of payment...",
+    checkSignature: "SIGN HERE",
+	checkDate: "DATE:",
+    checkDays: "EXPIRE IN:",
+    checkExpDays: "DAYS",
+    customerInfos: "CUSTOMER FIRSTNAME AND LASTNAME:",
+    customerInfoMoney: "CUSTOMER MONEY:",
+    customerInfoGold: "CUSTOMER GOLD:",
+    customerLoans: "CUSTOMER LOAN:",
+    customerPayback: "CUSTOMER PAYBACK:",
+    customerTransactions: "CUSTOMER TRANSACTIONS:",
+    
+    TableFirstname: "Firstname",
+    TableLastname: "Lastname",
+    TableGold: "Gold",
+    TableMoney: "Money",
+    TableLock: "Freeze",
+    TableUnlock: "Release",
+    TableStash: "Stash",
+    TableDate: "Date/Time",
+    TableAmount: "Amount",
+    TableInfo: "Information",
+    TableType: "Type",
+    backButton: "BACK TO CUSTOMERS",
+    
+    // CONFIG
+    UseHistory: true, // ENABLE Buttons and functions for history of transactions !
+    DirectorOpenStash: true, // ALLOW DIRECTOR TO HAVE ACCESS TO STASH OF PEOPLE ?
+	MarketGold: 5, // ALTER MARKET GOLD PRICE BY ( / 2) 2 means half price of market price !
+    DefaultBuyGold: 17.60, // IF WEBSITE MARKET DOSEN'T RESPOND OR OFFLINE USE DEFAULT
+    DefaultSellGold: 15.60, // IF WEBSITE MARKET DOSEN'T RESPOND OR OFFLINE USE DEFAULT
+};
+```
