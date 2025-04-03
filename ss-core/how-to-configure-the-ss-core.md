@@ -17,7 +17,7 @@ Follow these steps to properly configure the _SS-CORE_ script on your RedM serve
 
 1. In `SS-Core`, open the file that controls access permissions (usually found in `config.lua` or similar).
 2. Locate the `SteamAccess` variable.
-3. Enter your Steam ID here to allow access to the CORE panel, enabling you to manage your scripts directly in-game.
+3. Enter your Steam ID here to allow access to the CORE panel, enabling you to see all your scripts.
 
 ### Step 4: Enable SS-Core in server.cfg
 
