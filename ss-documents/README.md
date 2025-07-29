@@ -6,59 +6,43 @@ description: SS-IdentityCard documentation
 
 <figure><img src="../.gitbook/assets/COVER 1.png" alt=""><figcaption></figcaption></figure>
 
-**Overview**
+#### Overview
 
-**SS-Documents** is a powerful and fully customizable **official documents system** for RedM, built as an **addon for SS-IdentityCard**. It allows players to create, sign, and share unlimited legal documents such as certificates, licenses, contracts, statements, and more—fully integrated into immersive roleplay.
-
-With Western-style UI, handwriting simulation, job-based permissions, and full in-game usage, SS-Documents enhances realism for both legal and criminal scenarios in any RP server.
-
-> **Requires SS-IdentityCard.**
-
-
+**SS-Documents** is an advanced system for managing official documents in RedM, designed to enhance roleplay experiences. As an extension of **SS-IdentityCard**, it allows creation, signing, and sharing of various legal documents like certificates, licenses, and statements. This plugin integrates seamlessly into roleplay, offering a Western-themed UI and realistic features for both lawful and unlawful scenarios. **SS-IdentityCard** is needed for operation.
 
 #### Features and Functionality
 
-* Players can create unlimited **official and customized documents**.
-* Each document includes:
-* Title, subtitle, and official information headers.
-* Fillable fields: input boxes, dates, and text areas.
-* Once completed, the document is **signed and saved** on the server.
-
-***
+* **Unlimited Document Creation**: Players can create customizable documents with titles, subtitles, and detailed sections.
+* **Fillable Fields**: Input boxes, dates, and text areas that auto-save upon signing.
+* **Job-Based Document Access**: Restrictions based on roles via the AllowedDocs config.
 
 #### Document Creation System
 
-* Documents are **restricted by job roles**, using the `AllowedDocs` configuration.
-* Examples:
-  * Only **Governor** jobs can issue **Pardon Certificates** or **Political Affiliation forms**.
-    * **Police roles** can issue **Firearm Licenses**.
-    * **Mayors** can create **Marriage Certificates**, **Employment Contracts**, and **Divorce Agreements**.
+Documents are job-restricted:
 
-***
+* **Governor**: Pardon Certificates, Political Affiliation forms.
+* **Police**: Firearm Licenses.
+* **Mayors**: Marriage, Employment, Divorce Documents.
 
-* #### Predefined Categories & Documents
-  * Built-in document categories, each with custom access:
-    * **Public** – Statements, witness reports, denunciations.
-      * **Police** – Firearm licenses.
-      * **Mayor** – Sales declarations, debts, employment contracts, marriage, divorce.
-      * **Marshal** – Search warrants.
-      * **Governor** – Political certificates, pardon documents.
+#### Predefined Categories & Documents
 
-***
+Custom access categories:
 
-* #### Immersive UI & Features
-  * Western-style **paper UI** with handwritten-like appearance.
-  * Fully translated document categories and descriptions.
-  * In-game **menu navigation**, aligned left or right (`Config.Align`).
-  * Option to **show or view** documents to/from nearby players.
+* **Public**: Statements, reports, denunciations.
+* **Police**: Firearm Licenses.
+* **Mayor**: Sales declarations, debt notices.
+* **Marshal**: Search Warrants.
+* **Governor**: Political Certificates, Pardons.
 
-***
+#### Immersive UI & Features
 
-* #### Fully Configurable
-  * Easily customize:
-    * Document titles, subtitles, content structure.
-      * Access permissions per job.
-      * Category names, descriptions, and language.
-      * Uses a configurable item (e.g., `cocoa`) as paper to start a new document.
-      * Server-side saving with feedback on success.
+* **Western UI**: Handwritten appearance for documents.
+* **Translations Available**: Document categories and descriptions.
+* **In-Game Navigation**: Menu for showing/viewing documents to/from nearby players.
+
+#### Fully Configurable
+
+* **Customization Options**: Document content, job permissions, category settings.
+* **Configurable Items**: Example item like cocoa can initiate document creation.
+* **Server-Side Saving**: Document status updates upon successful server save.
 
