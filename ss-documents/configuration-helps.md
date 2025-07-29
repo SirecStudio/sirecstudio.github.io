@@ -4,7 +4,7 @@ The `config.lua` file for the SS-Documents RedM script defines the configuration
 
 #### Key Configuration Elements
 
-* **PaperItem**: This property specifies the item required to write a new document, which is set to `"cocoa"`.
+* **PaperItem**: This property specifies the item required to write a new document, which is set to `"`paperitem`"`.
 * **Align**: This property sets the text alignment for documents, currently set to `"right"`.
 * **Texts**: A table containing text identifiers and their respective string values, used for menu descriptions and document types. This allows customization and localization of different document-related texts.
 * **AllowedDocs**: A dictionary that links each document category to specific job roles allowed to access or generate these documents. For example, the `"police"` category can be accessed by roles like `"PolitiaFederala"` and `"Maresal"`.
