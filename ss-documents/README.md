@@ -8,8 +8,6 @@ description: SS-IdentityCard documentation
 
 **Overview**
 
-
-
 **SS-Documents** is a powerful and fully customizable **official documents system** for RedM, built as an **addon for SS-IdentityCard**. It allows players to create, sign, and share unlimited legal documents such as certificates, licenses, contracts, statements, and more—fully integrated into immersive roleplay.
 
 With Western-style UI, handwriting simulation, job-based permissions, and full in-game usage, SS-Documents enhances realism for both legal and criminal scenarios in any RP server.
@@ -18,7 +16,7 @@ With Western-style UI, handwriting simulation, job-based permissions, and full i
 
 
 
-### Custom Document Creation System
+#### Features and Functionality
 
 * Players can create unlimited **official and customized documents**.
 * Each document includes:
@@ -28,12 +26,13 @@ With Western-style UI, handwriting simulation, job-based permissions, and full i
 
 ***
 
-* #### Job-Based Access & Permissions
-  * Documents are **restricted by job roles**, using the `AllowedDocs` configuration.
-  * Examples:
-    * Only **Governor** jobs can issue **Pardon Certificates** or **Political Affiliation forms**.
-      * **Police roles** can issue **Firearm Licenses**.
-      * **Mayors** can create **Marriage Certificates**, **Employment Contracts**, and **Divorce Agreements**.
+#### Document Creation System
+
+* Documents are **restricted by job roles**, using the `AllowedDocs` configuration.
+* Examples:
+  * Only **Governor** jobs can issue **Pardon Certificates** or **Political Affiliation forms**.
+    * **Police roles** can issue **Firearm Licenses**.
+    * **Mayors** can create **Marriage Certificates**, **Employment Contracts**, and **Divorce Agreements**.
 
 ***
 
