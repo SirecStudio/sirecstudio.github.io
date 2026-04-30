@@ -51,3 +51,4 @@
     * [SS-Stable V4.7](ss-stable/change-logs/ss-stable-v4.7.md)
     * [SS-Stable V4.6](ss-stable/change-logs/ss-stable-v4.6.md)
     * [SS-Stable V4.5](ss-stable/change-logs/ss-stable-v4.5.md)
+    * [SS-Stable V4.4](ss-stable/change-logs/ss-stable-v4.4.md)
