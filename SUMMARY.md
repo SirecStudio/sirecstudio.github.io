@@ -48,3 +48,4 @@
   * [Configuration File](ss-stable/configuration-file.md)
   * [Configuration Helps](ss-stable/configuration-helps.md)
   * [Change logs](ss-stable/change-logs.md)
+    * [SS-Stable V4.6](ss-stable/change-logs/ss-stable-v4.6.md)
