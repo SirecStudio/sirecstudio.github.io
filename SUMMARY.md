@@ -24,6 +24,7 @@
   * [Configuration File](ss-identitycard/configuration-file.md)
   * [Configuration Helps](ss-identitycard/configuration-helps.md)
   * [Change logs](ss-identitycard/change-logs.md)
+    * [SS-IdentityCard V4.4](ss-identitycard/change-logs/ss-identitycard-v4.4.md)
 * [SS-Documents](ss-documents/README.md)
   * [Preview](ss-documents/preview.md)
   * [Configuration File](ss-documents/configuration-file.md)
