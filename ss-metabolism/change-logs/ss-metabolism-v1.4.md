@@ -32,3 +32,10 @@ SS-Metabolism keeps growing. Version 1.4 introduces a new HUD panel, icon scalin
 * Icons can be scaled, hidden, shown, and arranged more cleanly.
 * Voice, clock, and temperature information are now easier to read directly from the HUD.
 
+***
+
+## Preview
+
+<figure><img src="../../.gitbook/assets/ss-metabolism-v1.4-hud-editor.png" alt=""><figcaption></figcaption></figure>
+
+![](../../.gitbook/assets/ss-metabolism-v1.4-digital-clock.png)![](../../.gitbook/assets/ss-metabolism-v1.4-analog-clock.png)![](../../.gitbook/assets/ss-metabolism-v1.4-microphone.png)![](../../.gitbook/assets/ss-metabolism-v1.4-temperature.png)
