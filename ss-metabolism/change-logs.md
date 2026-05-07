@@ -1,8 +1,9 @@
 # Change logs
 
-**23/09/2025 - V1.3**&#x20;
+All SS-Metabolism updates are organized by version. Open a version page below to read the full changelog.
 
-* Added compatibility with SS-Housing, so the info about any housing is included in HUD !
-*
+## Versions
 
-    <figure><img src="../.gitbook/assets/asdasdasdasdasdasdasddasddddd.png" alt=""><figcaption></figcaption></figure>
+* [SS-Metabolism V1.4](change-logs/ss-metabolism-v1.4.md)
+* [SS-Metabolism V1.3](change-logs/ss-metabolism-v1.3.md)
+

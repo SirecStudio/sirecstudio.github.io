@@ -13,6 +13,8 @@
   * [Configuration File](ss-metabolism/configuration-file.md)
   * [Configuration Helps](ss-metabolism/configuration-helps.md)
   * [Change logs](ss-metabolism/change-logs.md)
+    * [SS-Metabolism V1.4](ss-metabolism/change-logs/ss-metabolism-v1.4.md)
+    * [SS-Metabolism V1.3](ss-metabolism/change-logs/ss-metabolism-v1.3.md)
 * [SS-Telegram](ss-telegram/README.md)
   * [Configuration File](ss-telegram/configuration-file.md)
   * [Send a telegram](ss-telegram/send-a-telegram.md)
