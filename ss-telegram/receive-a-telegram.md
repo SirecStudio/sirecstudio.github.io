@@ -4,15 +4,46 @@ description: REDM SCRIPTS | SIREC STUDIO
 
 # Receive a telegram
 
-The script will check every X seconds to see if you have a new telegram unread !
+SS-Telegram checks for unread telegrams on a configured interval:
 
-{% code overflow="wrap" %}
 ```lua
-TimeCheck = 60, 
-ResetTelegram = 600, 
+TimeCheck = 60
+ResetTelegram = 600
 ```
-{% endcode %}
 
-You will be notified about the new telegram and the bird will fly above you untill you call it, because you can receive a telegram in the wrong moment, fighting, roleplay, inside an interior and it can bother you in some moments like that. So the Telegram will fly above you untill you call it, and then you can read it.
+When a new telegram exists, the player receives a notification and the bird delivery flow starts.
 
-{% embed url="https://medal.tv/games/red-dead-2/clips/ijrPYWXYvL8Nz5YaO/d1337aNTIU5O?invite=cr-MSxZWm4sMjA5NDI2ODc3LA" %}
+***
+
+## Delivery Flow
+
+1. The script detects an unread telegram.
+2. The player is notified.
+3. A bird flies above the player.
+4. The player calls the bird down when ready.
+5. The telegram opens in the read interface.
+6. The telegram is saved as an inventory item.
+7. The database row is marked as read.
+
+This avoids forcing the telegram open during combat, roleplay scenes, interiors, or other bad timing.
+
+***
+
+## Coordinate Telegrams
+
+If the telegram includes coordinates, the receiver can see a location reference and temporary map route.
+
+The database must include:
+
+```sql
+ALTER TABLE `ss_telegram`
+ADD COLUMN `coords` varchar(500) DEFAULT NULL;
+```
+
+***
+
+## Money Telegrams
+
+If the telegram includes money, the receiver gets the money when reading the new telegram.
+
+Old saved telegram items should not pay the money again after the first read.

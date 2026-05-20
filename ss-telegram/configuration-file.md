@@ -1,69 +1,187 @@
 # Configuration File
 
-**Configuration File**
+## Main Files
 
-The configuration file defines settings for sending in-game telegrams, including customization options for notifications, jobs that can send official telegrams, webhook integration, date settings, and other parameters.
+SS-Telegram is configured mainly from these files:
 
-**Example Configuration**
+* `config.lua`: Main script configuration.
+* `l/l.lua`: Lua translations.
+* `config.js`: NUI / interface translations.
+* `EXTRA/ss_telegram.sql`: SQL for VORP style character IDs.
+* `EXTRA/ss_telegram_rsg.sql`: SQL for RSG style character IDs.
+* `UI/UI.html`: Telegram UI page.
+* `UI/js/js.js`: NUI JavaScript.
+* `UI/css/css.css`: NUI styling.
+
+***
+
+## config.lua
 
 {% code overflow="wrap" %}
 ```lua
--- Author 'SIREC' Discord Username
--- REPORT ANY BUGS ON https://discord.gg/9XNBaQSmMd --
-
 Config = {
-    Dev = true,  -- USE ONLY ON TEST SERVER FOR CONFIGURATION & TESTS
+    Dev = true,
     Language = "EN",
+    Key = 0xD9D0E1C0,
+
     SSIdentityCard = true,
-    
-    OfficialJobs = {"police", "PolitiaFederala"}, -- Official Jobs from which you can send telegrams with job name instead of your name!
-    
-    Webhook = "", -- Webhook URL for telegram notifications
-    WebhookTitle = "NEW TELEGRAM HAS BEEN SENT", -- Title for webhook notifications
-    
-    CustomDate = "08/1875",  -- Custom date format (Month/Year)
-    Use3DCam = false, -- Use 3D camera when calling the telegram
-    
-    MaxMoneyAmount = 500, -- Maximum amount of money that can be sent via telegram
-    
-    Telegram = "telegram", -- Item used for sending a telegram
-    AnonymousTelegram = "blacktelegram", -- Item for sending an anonymous telegram
-    
-    Model = "A_C_Eagle_01", -- Bird model for telegram delivery (e.g., A_C_Pigeon)
-    ModelAnonymous = "a_c_crow_01", -- Bird model for anonymous telegram delivery
-    
-    UnlimitedTelegram = false, -- true if you want to send unlimited telegrams with just one item, false to consume one item per telegram
-    
-    Key = 0xD9D0E1C0, -- Keybind for sending telegrams
-    CameraKey = 0x4BC9DABB, -- Keybind for using the 3D camera
-    
-    TimeCheck = 60, -- Time interval to check for new telegrams (default: 60 seconds)
-    ResetTelegram = 600, -- Time to reset the bird telegram if stuck or dead (default: 600 seconds or 10 minutes), "false" to turn off
+    OfficialJobs = {"police", "PolitiaFederala"},
+
+    Webhook = "",
+    WebhookTittle = "NEW TELEGRAM HAS BEEN SENT",
+
+    CustomDate = "08/1875",
+
+    Use3DCam = false,
+    CameraKey = 0x4BC9DABB,
+
+    Model = "A_C_Eagle_01",
+    ModelAnonymouse = "a_c_crow_01",
+
+    MaxMoneyAmount = 500,
+
+    Telegram = "telegram",
+    AnonymousTelegram = "blacktelegram",
+    UnlimitedTelegram = false,
+
+    TimeCheck = 60,
+    ResetTelegram = 600,
 }
 
-function NOTIFY(text) -- Set your notifications
+function NOTIFY(text)
     TriggerEvent("vorp:TipBottom", text, 5000)
 end
-
 ```
 {% endcode %}
 
-#### Using the Script
+***
 
-1. **Development Mode**: Set `Dev` to `true` for testing and configuration on a test server. Set it to `false` for production.
-2. **Language**: Configure the language setting with `Language`.
-3. **Identity Card**: Set `SSIdentityCard` to `true` to use identity cards with the telegram system.
-4. **Official Jobs**: Define official jobs in `OfficialJobs` array that can send telegrams using the job name instead of the personal name.
-5. **Webhook Integration**: Set the `Webhook` URL for telegram notifications and customize the `WebhookTitle`.
-6. **Custom Date**: Use the `CustomDate` field to set a custom date format for telegrams.
-7. **3D Camera**: Enable the 3D camera with `Use3DCam` when sending telegrams.
-8. **Money Transfer**: Configure `MaxMoneyAmount` for the maximum amount of money that can be sent via telegram.
-9. **Telegram Items**: Define items used for sending telegrams (`Telegram` and `AnonymousTelegram`).
-10. **Bird Models**: Customize bird models for delivering telegrams (`Model` and `ModelAnonymous`).
-11. **Unlimited Telegrams**: Set `UnlimitedTelegram` to `true` to send unlimited telegrams with just one item; set it to `false` to consume an item per telegram.
-12. **Keybinds**: Define keybinds for sending telegrams (`Key`) and using the 3D camera (`CameraKey`).
-13. **Time Intervals**: Configure `TimeCheck` for the interval to check for new telegrams and `ResetTelegram` for resetting the bird telegram if stuck or dead.
+## General Settings
 
-#### Final Considerations
+```lua
+Dev = true
+Language = "EN"
+Key = 0xD9D0E1C0
+```
 
-This guide covers the basic configuration and use of the SS-Telegram script for RedM. You can further expand the functionality by customizing notifications, integrating with webhooks, and setting up additional official jobs or bird models. If you have any further questions or need assistance, feel free to ask!
+* `Dev`: Use `true` only while testing. Use `false` on live servers.
+* `Language`: Language used by the script.
+* `Key`: Prompt key used to call, open, read, and write telegrams.
+
+***
+
+## Optional Integrations
+
+```lua
+SSIdentityCard = true
+OfficialJobs = {"police", "PolitiaFederala"}
+```
+
+* `SSIdentityCard`: Uses `SS-IdentityCard` names and identity data for recipients and sender identities.
+* `OfficialJobs`: Jobs allowed to send telegrams using the institution/job name.
+
+If you do not use `SS-IdentityCard`, set:
+
+```lua
+SSIdentityCard = false
+```
+
+***
+
+## Webhook Settings
+
+```lua
+Webhook = ""
+WebhookTittle = "NEW TELEGRAM HAS BEEN SENT"
+```
+
+* `Webhook`: Discord webhook URL. Leave empty to disable telegram logs.
+* `WebhookTittle`: Title used in the Discord log message.
+
+***
+
+## Telegram Date & UI
+
+```lua
+CustomDate = "08/1875"
+```
+
+* `CustomDate`: Custom month/year printed in telegram text.
+* Use `false` if you want the script to use the in-game date flow.
+
+***
+
+## Bird & Camera Settings
+
+```lua
+Use3DCam = false
+CameraKey = 0x4BC9DABB
+Model = "A_C_Eagle_01"
+ModelAnonymouse = "a_c_crow_01"
+```
+
+* `Use3DCam`: Enables optional 3D camera prompt while calling the bird.
+* `CameraKey`: Key used to switch the optional 3D camera.
+* `Model`: Bird model for normal telegrams.
+* `ModelAnonymouse`: Bird model for anonymous telegrams.
+
+***
+
+## Money & Items
+
+```lua
+MaxMoneyAmount = 500
+Telegram = "telegram"
+AnonymousTelegram = "blacktelegram"
+UnlimitedTelegram = false
+```
+
+* `MaxMoneyAmount`: Maximum amount of money that can be sent in one telegram.
+* `Telegram`: Usable item for normal telegrams.
+* `AnonymousTelegram`: Usable item for anonymous telegrams.
+* `UnlimitedTelegram`: If `true`, the item is not consumed. If `false`, one item is removed when a telegram is sent.
+
+***
+
+## Timers & Failsafe
+
+```lua
+TimeCheck = 60
+ResetTelegram = 600
+```
+
+* `TimeCheck`: Seconds between checks for unread telegrams.
+* `ResetTelegram`: Seconds before a stuck or dead bird is reset. Use `false` to disable the reset.
+
+***
+
+## SQL Tables
+
+Import one SQL file depending on your framework setup:
+
+```text
+EXTRA/ss_telegram.sql
+EXTRA/ss_telegram_rsg.sql
+```
+
+Main tables:
+
+```text
+ss_telegram
+ss_telegramlist
+```
+
+`ss_telegram` stores sent telegrams, receiver data, sender data, message text, money, read state, and optional coordinates.
+
+`ss_telegramlist` stores address book data for saved receiver names.
+
+### Coordinates Column
+
+Current SS-Telegram code writes a `coords` value when coordinate sharing is used. If your database table is old and does not include it, add:
+
+```sql
+ALTER TABLE `ss_telegram`
+ADD COLUMN `coords` varchar(500) DEFAULT NULL;
+```
+
+Run this once after importing the SQL if the column is missing.

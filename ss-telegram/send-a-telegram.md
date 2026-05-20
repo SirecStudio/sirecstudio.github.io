@@ -4,8 +4,60 @@ description: REDM SCRIPTS | SIREC STUDIO
 
 # Send a telegram
 
-To send a telegram is very easy, just register the items for normal and anonymouse telegram in your framework you want to be used in game. Once this just use the item to call the "bird" and wait for it.&#x20;
+Players send telegrams by using the configured telegram item:
 
-{% embed url="https://medal.tv/games/red-dead-2/clips/ijrIbgtTrAoMpvhCG/d1337GoMUgZ6?invite=cr-MSx2WEMsMjA5NDI2ODc3LA" %}
+```lua
+Telegram = "telegram"
+```
 
-If you use the blacktelegram (anonymouse) you will send a telegram to somebody without your name. The receiver will never know who send it !&#x20;
+When the item is used, the telegram bird is called and the write interface opens when the player can interact with it.
+
+***
+
+## Normal Telegrams
+
+Normal telegrams can include:
+
+* Receiver first and last name.
+* Sender identity.
+* Telegram message.
+* Optional money transfer.
+* Optional current coordinates.
+
+If `SSIdentityCard = true`, the sender can use identity card data and the receiver can be found through `SS-IdentityCard`.
+
+***
+
+## Anonymous Telegrams
+
+Anonymous telegrams use:
+
+```lua
+AnonymousTelegram = "blacktelegram"
+```
+
+Anonymous telegrams hide the sender identity from the receiver.
+
+***
+
+## Item Consumption
+
+```lua
+UnlimitedTelegram = false
+```
+
+If `UnlimitedTelegram = false`, one telegram item is consumed after sending.
+
+If `UnlimitedTelegram = true`, the player can keep using the item without consuming it.
+
+***
+
+## Official Sender Names
+
+Official jobs can send telegrams using the institution/job name:
+
+```lua
+OfficialJobs = {"police", "PolitiaFederala"}
+```
+
+Use this for sheriff offices, police departments, federal offices, or other roleplay institutions.
