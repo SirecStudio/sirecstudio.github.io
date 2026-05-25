@@ -4,7 +4,7 @@ description: SS-Telegram documentation
 
 # SS-Telegram
 
-<figure><img src="../.gitbook/assets/ss-telegram-paper.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2026-05-25 163821 copia (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ## Overview
 

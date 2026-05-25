@@ -1,187 +1,105 @@
+---
+description: Default SS-Telegram config file.
+---
+
 # Configuration File
 
-## Main Files
+```
+-- Author: SIREC
+-- Support / bug reports: https://discord.gg/9XNBaQSmMd
+--
+--[[
+===========================================================================
+ SS-Telegram Configuration
+===========================================================================
+ This file is written to be easy to understand even for people who do not
+ work with Lua regularly.
 
-SS-Telegram is configured mainly from these files:
+ IMPORTANT RULES:
+ 1. Change values, not logic.
+ 2. Use Dev = true only while testing.
+ 3. If a feature depends on another script, disable it here when you do not
+    have that resource on your server.
+ 4. Read README.md before changing any integrations.
+===========================================================================
+]]
 
-* `config.lua`: Main script configuration.
-* `l/l.lua`: Lua translations.
-* `config.js`: NUI / interface translations.
-* `EXTRA/ss_telegram.sql`: SQL for VORP style character IDs.
-* `EXTRA/ss_telegram_rsg.sql`: SQL for RSG style character IDs.
-* `UI/UI.html`: Telegram UI page.
-* `UI/js/js.js`: NUI JavaScript.
-* `UI/css/css.css`: NUI styling.
-
-***
-
-## config.lua
-
-{% code overflow="wrap" %}
-```lua
 Config = {
-    Dev = true,
+
+    --=====================================================================
+    -- GENERAL SETTINGS
+    --=====================================================================
+
+    Dev = true, -- true = extra logs/dev commands | false = recommended for live server
+
+    -- Available languages already included in l/l.lua:
+    -- EN / IT / ES / FR / DE / PT / RU / RO
     Language = "EN",
-    Key = 0xD9D0E1C0,
 
-    SSIdentityCard = true,
-    OfficialJobs = {"police", "PolitiaFederala"},
+    Key = 0xD9D0E1C0, -- prompt key used to call/open/read/write telegrams
 
-    Webhook = "",
-    WebhookTittle = "NEW TELEGRAM HAS BEEN SENT",
+    AutoSetupDatabase = true, -- true = create required tables/columns automatically on resource start
 
-    CustomDate = "08/1875",
+    --=====================================================================
+    -- OPTIONAL / ADDON INTEGRATIONS
+    -- Enable only if those resources exist on your server
+    --=====================================================================
 
-    Use3DCam = false,
-    CameraKey = 0x4BC9DABB,
+    SSIdentityCard = true, -- true = use SS-IdentityCard names/data for recipients and sender identities
 
-    Model = "A_C_Eagle_01",
-    ModelAnonymouse = "a_c_crow_01",
+    -- Jobs listed here can send telegrams using the institution/job name.
+    OfficialJobs = {"police", "SheriffValentine"},
 
-    MaxMoneyAmount = 500,
+    --=====================================================================
+    -- DISCORD WEBHOOK SETTINGS
+    --=====================================================================
 
-    Telegram = "telegram",
-    AnonymousTelegram = "blacktelegram",
+    Webhook = "", -- webhook URL | leave empty to disable logs
+    WebhookTittle = "NEW TELEGRAM HAS BEEN SENT", -- webhook title
+
+    --=====================================================================
+    -- TELEGRAM DATE / UI SETTINGS
+    --=====================================================================
+
+    CustomDate = "08/1875", -- custom month/year printed in sent telegram text | false = use game date
+
+    --=====================================================================
+    -- BIRD / CAMERA SETTINGS
+    --=====================================================================
+
+    Use3DCam = false, -- true = enables optional 3D camera prompt while calling the bird
+    CameraKey = 0x4BC9DABB, -- key used to switch optional 3D camera
+
+    Model = "A_C_Eagle_01", -- normal telegram bird model
+    ModelAnonymouse = "a_c_crow_01", -- anonymous telegram bird model
+
+    --=====================================================================
+    -- MONEY / ITEM SETTINGS
+    --=====================================================================
+
+    EnableSendMoney = true, -- true = players can attach money to telegrams | false = disable money option completely
+    EnableShareLocation = true, -- true = players can attach location/blip/GPS | false = disable location option completely
+
+    MaxMoneyAmount = 500, -- maximum money amount that can be sent by telegram
+
+    Telegram = "telegram", -- usable item used to send normal telegrams
+    AnonymousTelegram = "blacktelegram", -- usable item used to send anonymous telegrams
+
+    -- true = players can send unlimited telegrams while having the item
+    -- false = one item is removed for each telegram sent
     UnlimitedTelegram = false,
 
-    TimeCheck = 60,
-    ResetTelegram = 600,
+    --=====================================================================
+    -- TIMERS / FAILSAFE SETTINGS
+    --=====================================================================
+
+    TimeCheck = 60, -- seconds between checks for new telegrams
+    ResetTelegram = 600, -- seconds before stuck/dead bird reset | false = disable reset
 }
 
 function NOTIFY(text)
+    -- Default VORP notification. Replace this event if your server uses another notify system.
     TriggerEvent("vorp:TipBottom", text, 5000)
 end
+
 ```
-{% endcode %}
-
-***
-
-## General Settings
-
-```lua
-Dev = true
-Language = "EN"
-Key = 0xD9D0E1C0
-```
-
-* `Dev`: Use `true` only while testing. Use `false` on live servers.
-* `Language`: Language used by the script.
-* `Key`: Prompt key used to call, open, read, and write telegrams.
-
-***
-
-## Optional Integrations
-
-```lua
-SSIdentityCard = true
-OfficialJobs = {"police", "PolitiaFederala"}
-```
-
-* `SSIdentityCard`: Uses `SS-IdentityCard` names and identity data for recipients and sender identities.
-* `OfficialJobs`: Jobs allowed to send telegrams using the institution/job name.
-
-If you do not use `SS-IdentityCard`, set:
-
-```lua
-SSIdentityCard = false
-```
-
-***
-
-## Webhook Settings
-
-```lua
-Webhook = ""
-WebhookTittle = "NEW TELEGRAM HAS BEEN SENT"
-```
-
-* `Webhook`: Discord webhook URL. Leave empty to disable telegram logs.
-* `WebhookTittle`: Title used in the Discord log message.
-
-***
-
-## Telegram Date & UI
-
-```lua
-CustomDate = "08/1875"
-```
-
-* `CustomDate`: Custom month/year printed in telegram text.
-* Use `false` if you want the script to use the in-game date flow.
-
-***
-
-## Bird & Camera Settings
-
-```lua
-Use3DCam = false
-CameraKey = 0x4BC9DABB
-Model = "A_C_Eagle_01"
-ModelAnonymouse = "a_c_crow_01"
-```
-
-* `Use3DCam`: Enables optional 3D camera prompt while calling the bird.
-* `CameraKey`: Key used to switch the optional 3D camera.
-* `Model`: Bird model for normal telegrams.
-* `ModelAnonymouse`: Bird model for anonymous telegrams.
-
-***
-
-## Money & Items
-
-```lua
-MaxMoneyAmount = 500
-Telegram = "telegram"
-AnonymousTelegram = "blacktelegram"
-UnlimitedTelegram = false
-```
-
-* `MaxMoneyAmount`: Maximum amount of money that can be sent in one telegram.
-* `Telegram`: Usable item for normal telegrams.
-* `AnonymousTelegram`: Usable item for anonymous telegrams.
-* `UnlimitedTelegram`: If `true`, the item is not consumed. If `false`, one item is removed when a telegram is sent.
-
-***
-
-## Timers & Failsafe
-
-```lua
-TimeCheck = 60
-ResetTelegram = 600
-```
-
-* `TimeCheck`: Seconds between checks for unread telegrams.
-* `ResetTelegram`: Seconds before a stuck or dead bird is reset. Use `false` to disable the reset.
-
-***
-
-## SQL Tables
-
-Import one SQL file depending on your framework setup:
-
-```text
-EXTRA/ss_telegram.sql
-EXTRA/ss_telegram_rsg.sql
-```
-
-Main tables:
-
-```text
-ss_telegram
-ss_telegramlist
-```
-
-`ss_telegram` stores sent telegrams, receiver data, sender data, message text, money, read state, and optional coordinates.
-
-`ss_telegramlist` stores address book data for saved receiver names.
-
-### Coordinates Column
-
-Current SS-Telegram code writes a `coords` value when coordinate sharing is used. If your database table is old and does not include it, add:
-
-```sql
-ALTER TABLE `ss_telegram`
-ADD COLUMN `coords` varchar(500) DEFAULT NULL;
-```
-
-Run this once after importing the SQL if the column is missing.
