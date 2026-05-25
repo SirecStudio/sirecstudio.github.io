@@ -23,6 +23,7 @@
   * [Receive a telegram](ss-telegram/receive-a-telegram.md)
   * [Saved telegram](ss-telegram/saved-telegram.md)
   * [Change logs](ss-telegram/change-logs.md)
+    * [SS-Telegram V4.5](ss-telegram/change-logs/ss-telegram-v4.5.md)
     * [SS-Telegram V4.4](ss-telegram/change-logs/ss-telegram-v4.4.md)
 * [SS-Weapons](ss-weapons.md)
   * [Preview](ss-weapons/preview.md)
