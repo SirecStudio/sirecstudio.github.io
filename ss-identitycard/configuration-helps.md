@@ -29,7 +29,7 @@ SS-IdentityCard includes:
 ### Required
 
 * `SS-Core`
-* `ghmattimysql`
+* `oxmysql`
 
 ### Used By Default
 
@@ -58,13 +58,13 @@ If you do not use an optional integration, disable it in `config.lua`.
 
 Place the script in your server resources folder:
 
-```text
+```
 resources/[scripts]/SS-IdentityCard
 ```
 
 Keep the resource folder name exactly:
 
-```text
+```
 SS-IdentityCard
 ```
 
@@ -72,19 +72,19 @@ SS-IdentityCard
 
 Import the main SQL file:
 
-```text
+```
 EXTRA/sql.sql
 ```
 
 If your existing table is old and does not include immigration or fines fields, also check:
 
-```text
+```
 EXTRA/imigration.sql
 ```
 
 The main database table is:
 
-```text
+```
 ss_identitycard
 ```
 
@@ -95,7 +95,7 @@ It stores identifier data, character ID, record ID, real and fake identity data,
 Recommended start order:
 
 ```cfg
-ensure ghmattimysql
+ensure oxmysql
 ensure SS-Core
 ensure SS-IdentityCard
 ```
@@ -121,7 +121,7 @@ After importing SQL and checking the start order, restart the server and test th
 
 Languages are configured in:
 
-```text
+```
 l/l.lua
 ```
 
@@ -150,7 +150,7 @@ If an invalid language is set, the script falls back to `EN`.
 
 Open:
 
-```text
+```
 config.lua
 ```
 

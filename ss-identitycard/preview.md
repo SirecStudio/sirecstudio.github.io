@@ -4,6 +4,5 @@ description: Photos & Video Preview
 
 # Preview
 
-{% embed url="https://www.youtube.com/watch?v=ZBevhjpPw-w" %}
+<figure><img src="../.gitbook/assets/Screenshot 2026-05-25 163821 copia.png" alt="SS-IdentityCard Redm Script"><figcaption><p>SS-IdentityCard UI</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot_14.png" alt=""><figcaption><p>THE 3D ID UI IN-GAME</p></figcaption></figure>
