@@ -4,7 +4,7 @@ description: SS-Admin documentation
 
 # SS-Admin
 
-<figure><img src=".gitbook/assets/ss-admin-logo.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/admin2.png" alt=""><figcaption></figcaption></figure>
 
 ## Overview
 

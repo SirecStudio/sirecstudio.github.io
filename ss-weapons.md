@@ -4,7 +4,7 @@ description: SS-Weapons documentation
 
 # SS-Weapons
 
-<figure><img src=".gitbook/assets/ss-weapons-cover.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/weapons preview1.png" alt=""><figcaption></figcaption></figure>
 
 **Overview**
 
