@@ -2,9 +2,9 @@
 
 ## SS-Admin Setup & Configuration Guide
 
-SS-Admin is an advanced admin panel and staff toolset for RedM. It includes player moderation actions, ticket reports, admin chat, admin jail, Discord or Steam permissions, optional whitelist checks, server utility tools, economy tools, and integrations with other Sirec Studio systems.
+SS-Admin is an advanced admin panel and staff toolset for RedM. It includes player moderation actions, ticket reports, admin chat, admin jail, a **live Roles & Access system managed from the panel**, optional Discord whitelist, server utility tools, economy tools, and integrations with other Sirec Studio systems.
 
-This guide is written for server owners who want to install, configure, and test the script safely.
+This guide is written for server owners who want to install, configure, and test the script safely — no Lua knowledge needed.
 
 ***
 
@@ -12,15 +12,16 @@ This guide is written for server owners who want to install, configure, and test
 
 SS-Admin includes:
 
-* NUI admin panel with dashboard, player tools, tickets, ban list, item/weapon tools, horse tools, wagon tools, and admin chat.
+* NUI admin panel with dashboard, player tools, tickets, ban list, item / weapon tools, horse tools, wagon tools, and admin chat — **dark & light theme**, responsive on 1080p / 2K / 4K.
+* **Roles & Access managed live from the panel** — Discord-linked or manual roles, instant effect, no restart.
 * Staff actions such as revive, heal, freeze, kill, spectate, bring, goto, kick, warn, ban, unban, notify, cuff, and admin jail.
 * Utility tools such as noclip, god mode, waypoint teleport, coordinate teleport, player blips, nearby player visibility, clear zone, and admin stash.
 * Economy tools for giving money, gold, items, and weapons.
 * Horse and wagon admin tools.
 * Ticket system with player report command.
-* Admin chat with configurable in-memory history.
-* Discord role permissions or Steam identifier permissions.
-* Optional Discord whitelist.
+* WhatsApp-style admin chat with configurable in-memory history.
+* Optional Discord whitelist with **fail-open safety**.
+* **Automatic database setup** — tables create and verify themselves at startup.
 * Multi-language support for Lua and UI text.
 
 ***
@@ -42,7 +43,7 @@ SS-Admin includes:
 * `SS-IdentityCard`, used by identity creation and identity removal actions.
 * `SS-PoliceJob`, used by cuff metadata events if your server uses that integration.
 
-If you do not use the related scripts, restrict or disable the matching permission buttons.
+If you do not use the related scripts, simply do not grant the matching accesses to your roles.
 
 ***
 
@@ -52,31 +53,19 @@ If you do not use the related scripts, restrict or disable the matching permissi
 
 Place the script in your server resources folder:
 
-```text
+```
 resources/[scripts]/SS-Admin
 ```
 
 Keep the resource folder name exactly:
 
-```text
+```
 SS-Admin
 ```
 
-### 2. Import SQL
+### 2. Database — Nothing To Import
 
-Import:
-
-```text
-EXTRA/ss_admin.sql
-```
-
-This creates the table:
-
-```text
-ss_admin
-```
-
-The table stores player identifiers, warnings, ban state, ban details, playtime, last join/leave data, and admin jail time.
+You do **not** need to import any SQL. On first start SS-Admin automatically creates the `ss_admin` and `ss_admin_roles` tables and adds any missing column on older installs (self-healing migration). The reference schema stays in `EXTRA/ss_admin.sql` if you want to inspect it.
 
 ### 3. Start Order
 
@@ -94,73 +83,68 @@ If admin voice is enabled:
 ensure pma-voice
 ```
 
-### 4. Restart The Server
+### 4. Set Your Power Admin (server.cfg)
 
-After importing SQL and configuring permissions, restart the server fully and test with one staff account before opening the server to players.
+The **Power Admin** can always open the panel, use every action, and manage roles. It is tied to your server ACE admin group, so it can never be locked out.
+
+If your admins are already in `group.admin` (the standard setup):
+
+```cfg
+add_principal identifier.steam:110000XXXXXXXXX group.admin
+```
+
+That's it — the script grants the `ssadmin.power` ACE to `group.admin`, `group.superadmin` and `group.mod` automatically at startup.
+
+If your admins are in a **different** group, add one line:
+
+```cfg
+add_ace group.yourgroup ssadmin.power allow
+```
+
+The ACE object checked is set by `Config.PowerAdminAce` in `config.lua` (default `ssadmin.power`).
+
+### 5. Restart The Server
+
+Restart fully and test with one staff account before opening the server to players. On start you should see:
+
+```
+SS-Admin database: tables verified / created, columns checked
+SS-Admin roles: N role(s) loaded from database
+```
 
 ***
 
 ## Main Files
 
 * `fxmanifest.lua`: Resource manifest.
-* `config.lua`: Main script configuration.
-* `s/config.lua`: Discord bot token and guild ID.
+* `config.lua`: Main script configuration (shipped to clients — **no secrets here**).
+* `s/config.lua`: **Server-only secrets** — Discord bot token, guild ID, webhooks, whitelist role IDs.
 * `l/l.lua`: Lua translations.
 * `config.js`: UI translations.
 * `c/c.lua`: Client logic.
 * `s/s.lua`: Server logic.
 * `UI/UI.html`: Admin panel UI.
-* `EXTRA/ss_admin.sql`: SQL table.
+* `EXTRA/ss_admin.sql`: Reference schema only.
 
 ***
 
 ## Languages
 
-The main language is configured in:
-
-```text
-config.lua
-```
-
-Example:
+The main language is configured in `config.lua`:
 
 ```lua
 Language = "EN"
 ```
 
-Included languages:
+Included languages: `EN`, `RO`, `IT`, `DE`, `FR`, `ES`, `PT`.
 
-* `EN`
-* `RO`
-* `IT`
-* `DE`
-* `FR`
-* `ES`
-* `PT`
-
-Lua translations are in:
-
-```text
-l/l.lua
-```
-
-UI translations are in:
-
-```text
-config.js
-```
+Lua translations are in `l/l.lua`, UI translations in `config.js`.
 
 ***
 
 ## First Configuration
 
-Open:
-
-```text
-config.lua
-```
-
-Start with the general settings:
+Open `config.lua` and start with the general settings:
 
 ```lua
 Language = "EN"
@@ -171,6 +155,7 @@ ActiveCommands = true
 MaxWarns = 3
 BanWarns = 3
 Notify = true
+Debug = false
 ```
 
 * `Language`: Main language used by Lua notifications and supported UI text.
@@ -181,18 +166,15 @@ Notify = true
 * `MaxWarns`: Number of warnings before automatic ban.
 * `BanWarns`: Number of days for the automatic ban.
 * `Notify`: Sends notifications for admin actions.
+* `Debug`: Keep `false` in production. Set `true` only while testing — prints permission / connect / Discord diagnostics.
 
 ***
 
 ## Discord Bot Setup
 
-Open:
+Only needed if you use **Discord-linked roles** or the **Discord whitelist**.
 
-```text
-s/config.lua
-```
-
-Set:
+Open `s/config.lua` and set:
 
 ```lua
 Discord = {
@@ -201,160 +183,71 @@ Discord = {
 }
 ```
 
-The Discord bot is required when:
+The bot must be **inside your Discord server**. On start the console prints whether the bot connected:
 
-* `UseSteamPermissions = false`
-* Discord role permissions are used.
-* Discord whitelist is enabled.
+```
+SS-Admin Discord bot connected: <Your Server> (<id>)
+```
 
 Keep the token private. Never share it publicly or include it in screenshots.
 
 ***
 
-## Permission Mode
+## Managing Admin Roles (From The Panel)
 
-### Discord Permissions
+Roles are **no longer configured in `config.lua`** — that was a security risk (steam ids / role ids were downloaded by every client). Everything is now managed live from the panel and stored in the database, so **changes apply instantly, no restart**.
 
-Use this mode when staff access should be based on Discord role IDs:
+Open the panel as Power Admin → **Roles & Access** (sidebar).
 
-```lua
-UseSteamPermissions = false
+### Create A Role
 
-DiscordPermissions = {
-    {name = "ADMIN", roles = {"ROLE_ID_HERE"}},
-    {name = "MODERATOR", roles = {"ROLE_ID_HERE"}},
-    {name = "HELPER", roles = {"ROLE_ID_HERE"}},
-}
-```
+* **New Role** → give it a name and tick the accesses it should have.
+* **Discord role (optional):**
+  * Pick a Discord role → everyone with that role gets the accesses **automatically on join**.
+  * Leave it on **"None — assign manually"** → the role is granted per player with **Give Admin** (below).
 
-The role names `ADMIN`, `MODERATOR`, and `HELPER` are then used inside `Permissions`.
+### Give / Remove Admin On A Specific Player
 
-### Steam Permissions
+* Open a player's profile (Players → click a name) → **Give Admin** button.
+* Pick one of your roles → the player gets it (matched by their steam id). Click again to remove (toggle).
 
-Use this mode when staff access should be based on Steam identifiers:
+### See Who Is Admin
 
-```lua
-UseSteamPermissions = true
-
-SteamPermissions = {
-    {name = "ADMIN", roles = {"steam:xxxxxxxxxxxx"}},
-    {name = "MODERATOR", roles = {}},
-    {name = "HELPER", roles = {}},
-}
-```
+* **See Admins** (next to New Role) lists every admin:
+  * **Manual** admins → shown with a **Remove** button.
+  * **Discord** admins → shown as "via Discord" (manage them from Discord).
+* Online admins also get a 👑 **crown** next to their name in the Players list.
 
 ***
 
 ## Whitelist
 
-Whitelist is controlled by:
+* Toggle with `Config.WhiteList` in `config.lua`.
+* The allowed Discord role IDs live **server-side** in `s/config.lua` → `Config.WhiteListRoles` (never sent to clients).
+* **Fail-open safety:** if Discord is unreachable (e.g. rate-limited during a mass restart), players are **allowed in** instead of being wrongly kicked.
 
-```lua
-WhiteList = true
-WhiteListRoles = {"DISCORD_ROLE_ID"}
-```
-
-If `WhiteList = true`, players must have one of the configured Discord roles to join.
-
-If your server does not use SS-Admin for whitelist access, set:
-
-```lua
-WhiteList = false
-```
+If your server does not use SS-Admin for whitelist access, set `WhiteList = false`.
 
 ***
 
-## Admin Permissions
+## Theme (Dark / Light)
 
-Admin permissions are configured in:
-
-```lua
-Permissions = {
-    [1] = { Command = "adminmenu", Roles = {"ADMIN", "MODERATOR", "HELPER"} },
-}
-```
-
-Each entry has:
-
-* `Command`: Chat command used for that action, or `false` if it should only be used from the panel.
-* `Roles`: Staff categories allowed to use the action.
-
-Do not change the numeric indexes. The script logic depends on those numbers.
-
-### Common Permission Examples
-
-Only admins can ban:
-
-```lua
-[28] = { Command = "ban", Roles = {"ADMIN"} },
-```
-
-Admins and moderators can revive:
-
-```lua
-[17] = { Command = "revive", Roles = {"ADMIN", "MODERATOR"} },
-```
-
-Disable a command but keep the panel button:
-
-```lua
-[21] = { Command = false, Roles = {"ADMIN"} },
-```
-
-***
-
-## Important Permission Indexes
-
-* `[1]`: Open admin panel.
-* `[2]`: Announce.
-* `[3]`: Spawn wagon / horse menu.
-* `[4]`: Noclip.
-* `[5]`: Waypoint or coordinate teleport.
-* `[11]`: Player blips.
-* `[13]`: Unban.
-* `[14]`: Spectate.
-* `[17]`: Revive player.
-* `[18]`: Heal player.
-* `[19]`: Give money.
-* `[20]`: Give gold.
-* `[21]`: Give item.
-* `[22]`: Give weapon.
-* `[26]`: Kick.
-* `[27]`: Warn.
-* `[28]`: Ban.
-* `[34]`: Admin jail.
-* `[36]`: Admin stash.
-* `[37]`: Open player inventory.
-* `[38]`: Clear zone.
-* `[39]`: Cuff / uncuff.
-* `[40]`: Revive all.
-* `[41]`: Heal all.
-* `[42]`: Kick all.
-* `[43]`: Remove one warning.
-* `[44]`: Revive horse.
-* `[45]`: Give horse.
-* `[46]`: Give wagon.
-* `[47]`: Delete identity card.
-* `[48]`: Delete fake identity card.
-* `[49]`: Create identity card.
-* `[50]`: See nearby players.
+Each admin can switch **dark / light** from the sun / moon button in the sidebar. The choice is remembered per admin (stored locally in the panel).
 
 ***
 
 ## Ticket System
 
-Ticket settings:
+Ticket settings in `config.lua`:
 
 ```lua
 TicketSystem = true
 ReportCommand = "report"
 TpBack = true
 ModelTicket = "cs_crackpotrobot"
-Webhook = "YOUR_TICKET_WEBHOOK"
-TicketSolved = "TICKET SOLVED"
-TicketTaken = "TICKET TAKEN"
-TicketNew = "NEW TICKET"
 ```
+
+The ticket webhook is set in `s/config.lua` (`Config.Webhook`).
 
 How it works:
 
@@ -366,24 +259,18 @@ How it works:
 6. When solved, the ticket is marked as solved.
 7. If `TpBack = true`, the staff member is teleported back.
 
-To disable the system:
-
-```lua
-TicketSystem = false
-```
+To disable the system, set `TicketSystem = false`.
 
 ***
 
 ## Admin Chat
-
-Admin chat settings:
 
 ```lua
 AdminChat = true
 AdminChatHistoryLimit = 60
 ```
 
-* `AdminChat`: Enables the admin chat page inside the panel.
+* `AdminChat`: Enables the admin chat page inside the panel — WhatsApp style (your messages right, others left).
 * `AdminChatHistoryLimit`: Number of recent messages kept in memory.
 
 The chat history is reset when the resource restarts.
@@ -391,8 +278,6 @@ The chat history is reset when the resource restarts.
 ***
 
 ## Admin Jail
-
-Admin jail settings:
 
 ```lua
 AdminJail = {2369.5132, -1492.2881, 45.9974}
@@ -404,7 +289,7 @@ ReleaseJail = {2680.5466, -1449.5090, 46.3672}
 * `JailRadius`: Maximum allowed movement distance inside jail.
 * `ReleaseJail`: Position where the player is sent after release.
 
-Admin jail time is stored in the database and can persist through reconnects.
+Admin jail time is stored in the database and persists through reconnects.
 
 ***
 
@@ -419,36 +304,18 @@ NoclipUp = 0xD9D0E1C0
 NoclipDown = 0x8FFC75D6
 ```
 
-Noclip speeds are configured in:
-
-```lua
-NoClip = {
-    Speeds = {
-        { speed = 0 },
-        { speed = 0.5 },
-        { speed = 2 },
-        { speed = 5 },
-        { speed = 10 },
-        { speed = 15 },
-    },
-}
-```
-
 If you are not sure what a key hash does, leave it unchanged.
 
 ***
 
 ## Webhooks
 
-SS-Admin uses two main webhook fields:
+Both webhooks now live **server-side** in `s/config.lua`:
 
 ```lua
-Webhook = "YOUR_TICKET_WEBHOOK"
-WebHook = "YOUR_ADMIN_LOGS_WEBHOOK"
+Config.WebHook = "YOUR_ADMIN_LOGS_WEBHOOK"  -- general admin action logs
+Config.Webhook = "YOUR_TICKET_WEBHOOK"      -- ticket system logs
 ```
-
-* `Webhook`: Ticket system logs.
-* `WebHook`: General admin action logs.
 
 Use separate Discord channels if you want ticket logs and admin action logs separated.
 
@@ -456,52 +323,25 @@ Use separate Discord channels if you want ticket logs and admin action logs sepa
 
 ## Useful Commands
 
-The exact command names are controlled by `Config.Permissions`.
+The exact command names are controlled by `Config.Permissions`. Common default commands include:
 
-Common default commands include:
+* `/adminmenu`, `/noclip`, `/tp`, `/god`, `/spectate`
+* `/revive`, `/heal`, `/reviveall`, `/healall`, `/reviveme`, `/healme`
+* `/kick`, `/warn`, `/unwarn`, `/ban`, `/unban`, `/ajail`
+* `/givemoney`, `/givegold`, `/giveitem`, `/giveweapon`
+* `/bring`, `/goto`, `/freeze`, `/kill`, `/cuff`, `/notify`
+* `/fix`, `/delveh`, `/delhorse`, `/activeblips`, `/clearzone`, `/seeplayers`, `/check`, `/sjob`
 
-* `/adminmenu`
-* `/noclip`
-* `/tp`
-* `/reviveme`
-* `/healme`
-* `/fix`
-* `/delveh`
-* `/delhorse`
-* `/activeblips`
-* `/god`
-* `/unban`
-* `/spectate`
-* `/freeze`
-* `/kill`
-* `/revive`
-* `/heal`
-* `/givemoney`
-* `/givegold`
-* `/giveitem`
-* `/giveweapon`
-* `/check`
-* `/sjob`
-* `/notify`
-* `/kick`
-* `/warn`
-* `/ban`
-* `/bring`
-* `/goto`
-* `/ajail`
-* `/clearzone`
-* `/cuff`
-* `/reviveall`
-* `/healall`
-* `/kickall`
-* `/unwarn`
-* `/seeplayers`
+### Server Console Diagnostics
+
+* `ssadmin_debug <serverId>`: Dumps ACE / identifiers / permissions for a player.
+* `ssadmin_refresh`: Resyncs permissions for all online admins.
 
 ***
 
 ## Exports
 
-SS-Admin exposes report/ticket helper exports:
+SS-Admin exposes report / ticket helper exports:
 
 ```lua
 exports["SS-Admin"]:ReportList()
@@ -519,44 +359,33 @@ Use these only if another resource needs to open the report list or report form 
 Check:
 
 * `SS-Core` is started before `SS-Admin`.
-* The player has the correct Discord role or Steam identifier.
-* Permission `[1]` includes the player's staff category.
-* `OpenMenu` is not `false`, or `/adminmenu` is enabled.
+* Set `Config.Debug = true` and check the server console for `perms sync: [id] name ... power admin: true/false`.
+* If `power admin: false`, your character's steam id is not in `group.admin` — add it (see Installation step 4), then `refresh` + `restart SS-Admin`.
+* Otherwise, make sure a role granting access `[1]` (Open admin panel) is assigned to you from the Roles & Access page.
+* `ssadmin_debug <id>` and `ssadmin_refresh` (server console only) help diagnose.
 
-### Discord Permissions Do Not Work
+### Discord Roles Do Not Resolve
 
 Check:
 
-* `UseSteamPermissions = false`.
-* Discord bot token is valid.
+* Token and `GuildId` in `s/config.lua` are correct.
 * The bot is inside the correct Discord server.
-* `GuildId` is correct.
-* Role IDs are copied correctly.
-* The player has Discord linked to RedM identifiers.
+* The role picked in the panel Roles editor is the right one.
+* The player has Discord linked to their RedM identifiers.
 
-### Steam Permissions Do Not Work
+### Player Wrongly Kicked By Whitelist
 
-Check:
+The whitelist is fail-open on Discord errors, so an outage never kicks players. If a specific player is kicked:
 
-* `UseSteamPermissions = true`.
-* The Steam identifier starts with `steam:`.
-* The identifier is inside the correct role group.
-
-### Player Cannot Join Because Of Whitelist
-
-Check:
-
-* `WhiteList = true`.
-* `WhiteListRoles` contains the correct Discord role IDs.
-* The player has one of those roles.
-* The Discord bot can read guild member roles.
+* Confirm they have a whitelisted role.
+* Confirm `Config.WhiteListRoles` (in `s/config.lua`) contains the correct role IDs.
 
 ### Ticket System Does Not Log
 
 Check:
 
 * `TicketSystem = true`.
-* `Webhook` contains a valid Discord webhook.
+* `Config.Webhook` in `s/config.lua` contains a valid Discord webhook.
 * The player is using the configured `ReportCommand`.
 
 ### Admin Voice Does Not Work
@@ -574,7 +403,6 @@ Check:
 * Resource folder name is exactly `SS-Admin`.
 * `oxmysql` is installed and started before `SS-Admin`.
 * `SS-Core` is started before `SS-Admin`.
-* SQL has been imported.
 * `s/config.lua` exists and does not contain broken Lua syntax.
 
 ***
@@ -583,17 +411,15 @@ Check:
 
 Before going live, confirm:
 
-* SQL has been imported.
-* `oxmysql` starts before `SS-Admin`.
-* `SS-Core` starts before `SS-Admin`.
-* Discord bot token and guild ID are configured if using Discord permissions.
-* `UseSteamPermissions` is set correctly.
-* Staff roles or Steam identifiers are configured.
+* `oxmysql` and `SS-Core` start before `SS-Admin`.
+* The startup console shows `tables verified / created` (no SQL import needed).
+* Your Power Admin can open the panel (ACE group set in `server.cfg`).
+* Roles are created in **Roles & Access** and assigned (Discord or manual).
+* Discord bot token and guild ID are configured if using Discord roles or whitelist.
 * Whitelist is enabled or disabled intentionally.
-* Ticket webhook is tested.
-* Admin logs webhook is tested.
+* Ticket webhook and admin logs webhook (both in `s/config.lua`) are tested.
 * `AdminVoice` is disabled if `pma-voice` is not installed.
-* One admin account can open the panel.
+* `Config.Debug` is set back to `false`.
 * Ban, warn, revive, teleport, and ticket actions have been tested.
 
 ***
@@ -604,35 +430,21 @@ When editing Lua:
 
 * Strings use quotes: `"text"`.
 * Table entries usually end with a comma: `,`.
-* `true` enables a feature.
-* `false` disables a feature.
+* `true` enables a feature, `false` disables it.
 * Numbers do not use quotes: `100`.
-* Role IDs, Steam IDs, item names, and webhooks use quotes.
-* Do not rename permission indexes.
+* Role IDs, item names, and webhooks use quotes.
+* Do not change the numeric permission indexes.
+* Keep secrets (token, webhooks, whitelist role IDs) **only** in `s/config.lua`.
 * Do not paste Discord bot tokens into public messages.
 
 Bad:
 
 ```lua
-UseSteamPermissions = "false"
+WhiteList = "false"
 ```
 
 Good:
 
 ```lua
-UseSteamPermissions = false
-```
-
-Bad:
-
-```lua
-[28] = { Command = "ban", Roles = {"ADMIN"} }
-[29] = { Command = "bring", Roles = {"ADMIN"} }
-```
-
-Good:
-
-```lua
-[28] = { Command = "ban", Roles = {"ADMIN"} },
-[29] = { Command = "bring", Roles = {"ADMIN"} },
+WhiteList = false
 ```

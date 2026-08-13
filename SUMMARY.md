@@ -54,6 +54,7 @@
   * [Configuration File](ss-admin/configuration-file.md)
   * [Configuration Helps](ss-admin/configuration-helps.md)
   * [Change logs](ss-admin/change-logs.md)
+    * [SS-Admin V5.0](ss-admin/change-logs/ss-admin-v5.0.md)
     * [SS-Admin V4.7](ss-admin/change-logs/ss-admin-v4.7.md)
 * [SS-Documents](ss-documents/README.md)
   * [Preview](ss-documents/preview.md)
