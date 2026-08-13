@@ -84,3 +84,8 @@
     * [SS-Stable V4.6](ss-stable/change-logs/ss-stable-v4.6.md)
     * [SS-Stable V4.5](ss-stable/change-logs/ss-stable-v4.5.md)
     * [SS-Stable V4.4](ss-stable/change-logs/ss-stable-v4.4.md)
+* [SS-SlotMachine](ss-slotmachine/README.md)
+  * [Configuration File](ss-slotmachine/configuration-file.md)
+  * [Configuration Helps](ss-slotmachine/configuration-helps.md)
+  * [Change logs](ss-slotmachine/change-logs/README.md)
+    * [SS-SlotMachine V2.0](ss-slotmachine/change-logs/ss-slotmachine-v2.0.md)
