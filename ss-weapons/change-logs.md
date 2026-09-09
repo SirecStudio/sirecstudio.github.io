@@ -4,4 +4,5 @@ All SS-Weapons updates are organized by version. Open a version page below to re
 
 ## Versions
 
+* [SS-Weapons V1.1](change-logs/ss-weapons-v1.1.md)
 * [SS-Weapons V1.0](change-logs/ss-weapons-v1.0.md)

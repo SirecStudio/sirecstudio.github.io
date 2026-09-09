@@ -4,38 +4,41 @@ description: SS-Weapons documentation
 
 # SS-Weapons
 
-<figure><img src=".gitbook/assets/weapons preview1.png" alt=""><figcaption></figcaption></figure>
+![SS-Weapons blueprint gunsmith editor](.gitbook/assets/ss-weapons-editor-cards.jpg)
 
 **Overview**
 
-**SS-Weapons** is a complete RedM weapon store, ammo, gunsmith, weapon customization, weapon condition, repair, cleaning, HUD, and preview system.
+**SS-Weapons** is a complete RedM weapon system: a vintage weapon and ammo catalogue, a blueprint-style gunsmith bench, weapon condition with cleaning and repair, weapon presets, an optional weapon HUD and a synced preview weapon, all in one configurable resource.
 
-The script lets server owners configure weapon stores, gunsmith benches, weapon and ammo catalogs, custom weapon serials and labels, component editing, saved gunsmith templates, weapon dirt/soot/damage/permanent wear, cleaning through the native inspection flow, repair kits, ammo box usage, and optional poison/tranquilizer effects.
+Players buy weapons and ammo from a parchment catalogue, customize supported weapons on a bench where every editable part is linked to the real weapon lying on the table, save customization templates, inspect condition, clean their weapons and repair permanent wear. Every purchase, edit and wear value is validated by the server.
 
-* **Weapon & Ammo Store System**
-  * Players can buy weapons and ammo from configured stores.
-  * Stores can sell all configured items or only selected weapons/ammo.
-  * Custom serials and custom labels can be enabled per store.
-* **Gunsmith System**
-  * Configured gunsmith benches allow supported weapons to be edited.
-  * Supports component, material, engraving, engraving material, tint, scope, grip, wrap, body, barrel, sight, trigger, hammer, cylinder, clip, and skin pricing.
-  * Gunsmith access can be limited by job.
+* **Vintage Catalogue Store**
+  * Category tabs, item list with thumbnails and prices, engraved illustration plate, description and stat bars per weapon.
+  * Custom serial and custom weapon name (per store: paid option, hidden, or a forced store name), ammo quantity with live total.
+  * Each store sells the whole catalogue or only selected weapons / ammo.
+* **Blueprint Gunsmith Editor**
+  * Top-down view of the preview weapon; every editable part gets a card connected to the exact spot on the weapon with a callout line.
+  * Options drawer with component, material, engraving, engraving metal and colour tiles, priced per change; live preview; Condition / Dirt / Rust meters with a Repair button.
+  * Rotate, zoom and reset the view; the preview is centred and framed automatically for every weapon.
+  * Per-weapon presets (camera + callout positions) tuned in game and stored in `cfg/presets.json`.
+  * One player per bench: a bench in use is locked for everyone else.
+* **Per-Weapon Part Lists**
+  * Cards exist only for parts the weapon really has; shared materials / engravings only for weapon families that accept them.
+  * Bow frame / grip / string colours, blade materials and engravings, special skins.
 * **Weapon Templates**
-  * Players can save a gunsmith setup as a template.
-  * Templates can be applied again later or deleted.
-  * Templates are saved per owner, character, weapon, and template name.
+  * Save, apply and delete component setups per owner, character, weapon and template name.
 * **Weapon Wear, Cleaning & Repair**
-  * Saves dirt, soot, condition, damage, and permanent rust/wear.
-  * Cleaning uses the native weapon inspection flow.
-  * Repair kits can reduce permanent rust/damage.
-  * Weapons can be blocked from use when permanent degradation reaches the configured limit.
-* **Weapon HUD & Preview**
-  * Optional weapon HUD with weapon image and ammo display.
-  * Gunsmith preview weapons can be synchronized to nearby players.
-  * Weapon and ammo images are loaded from the NUI assets.
+  * Dirt, soot, degradation, damage and permanent wear are saved per weapon serial in `ss_weapons`.
+  * Cleaning uses the native weapon inspection flow with a configurable item; repair uses a repair kit and lowers permanent wear from the stored value.
+  * Wear can only grow through play; a weapon can be blocked from firing at 100% permanent wear.
+* **Weapon HUD & Preview Sync**
+  * Optional weapon HUD with weapon image and ammo count, nine screen positions.
+  * Nearby players can watch the gunsmith preview while someone edits it.
+* **vorp\_inventory v1 & v2**
+  * The inventory version is detected automatically and each version has its own equip logic.
+* **Security**
+  * Ownership, bench distance, jobs, prices, component payloads and wear values are checked server-side.
 * **Catalog Data**
-  * Includes 57 weapon entries in `cfg/weapons.lua`.
-  * Includes 44 ammo entries in `cfg/ammo.lua`.
-  * Supports category-based UI browsing.
+  * 57 weapon entries in `cfg/weapons.lua`, 44 ammo entries in `cfg/ammo.lua`, category-based browsing.
 * **Multi-Language Support**
-  * Includes language support for `EN`, `IT`, `ES`, `FR`, `DE`, `PT`, `RU`, and `RO`.
+  * `EN`, `IT`, `ES`, `FR`, `DE`, `PT`, `RU`, `RO` for notifications and UI.

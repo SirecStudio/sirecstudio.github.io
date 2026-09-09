@@ -2,29 +2,26 @@
 
 ## SS-Weapons Setup & Configuration Guide
 
-SS-Weapons is a RedM weapon store, ammo, gunsmith, customization, weapon condition, cleaning, repair, HUD, and preview system.
+SS-Weapons is a RedM weapon catalogue, ammo, blueprint gunsmith, weapon condition, cleaning, repair, HUD and preview system.
 
-This guide is written for server owners who want to install, configure, and test the script safely.
+This guide is written for server owners who want to install, configure and test the script safely.
 
 ***
 
 ## Features Overview
 
-SS-Weapons includes:
-
-* Weapon stores with configurable weapon and ammo catalogs.
+* Vintage catalogue store with configurable weapon and ammo lists per location.
 * Ammo boxes that add bullets to the player's ammo belt.
-* Gunsmith benches with job restrictions.
-* Weapon component customization.
-* Gunsmith templates for saving and reusing component setups.
-* Custom weapon serial and custom weapon label support.
-* Persistent weapon dirt, soot, condition, damage, and rust/wear.
-* Weapon cleaning through the native inspection flow.
-* Weapon repair with configurable repair item.
-* Optional weapon HUD with weapon image and ammo count.
-* Gunsmith preview sync for nearby players.
-* Optional poison and tranquilizer effects.
-* Multi-language support.
+* Blueprint gunsmith editor: every editable part linked to the real weapon on the bench, options drawer, live preview, rotate / zoom / reset.
+* Automatic centering and framing of the preview for every weapon; per-weapon presets tuned in game.
+* Per-weapon part lists (only what the game accepts), bow colours, blade materials and engravings.
+* Gunsmith templates for saving and reusing setups.
+* Custom weapon serial and custom weapon name, per store.
+* Persistent dirt, soot, degradation, damage and permanent wear; cleaning through the native inspection flow; repair kit.
+* One player per bench; nearby players can watch the preview.
+* Optional weapon HUD, poison / tranquilizer effects.
+* vorp\_inventory v1 and v2, server-side validation of every purchase and edit.
+* 8 languages.
 
 ***
 
@@ -34,18 +31,17 @@ SS-Weapons includes:
 
 * `SS-Core`
 * `ghmattimysql`
-* `vorp_inventory`
+* `vorp_inventory` (v1 or v2, detected automatically)
 
 ### Used By Default
 
 * `@SS-Core/dataview.lua`
-* `vorp:NotifyLeft` in the default `NOTIFY` function.
-* RedM/RDR3 weapon native functions.
+* `vorp:NotifyLeft` in the default `NOTIFY` function (`config.lua`).
 
 ### Optional Integrations
 
-* `SS-Notify`, if you switch the `NOTIFY` function to the included commented example.
-* `SS-PlayerShops`, if you use the external player shop open/buy flow already supported by the client.
+* `SS-Notify`, if you switch the `NOTIFY` function to the commented example.
+* `SS-PlayerShops`, if you use the external player shop flow supported by the client.
 
 ***
 
@@ -53,36 +49,24 @@ SS-Weapons includes:
 
 ### 1. Add The Resource
 
-Place the script in your server resources folder:
-
-```text
+```
 resources/[scripts]/SS-Weapons
 ```
 
-Keep the resource folder name exactly:
-
-```text
-SS-Weapons
-```
-
-The script checks the resource name, and the NUI expects `SS-Weapons`.
+Keep the folder name exactly `SS-Weapons`: the script checks it and the NUI posts to it.
 
 ### 2. Database
 
-SS-Weapons creates and upgrades its own extra tables automatically:
+Tables are created and upgraded automatically at start:
 
-```text
+```
 ss_weapons
 ss_weaponstemp
 ```
 
 The script also reads and updates your existing weapon `loadout` table.
 
-Make sure your server already has the standard weapon/loadout setup used by `SS-Core` and your inventory.
-
 ### 3. Start Order
-
-Recommended:
 
 ```cfg
 ensure ghmattimysql
@@ -91,128 +75,84 @@ ensure SS-Core
 ensure SS-Weapons
 ```
 
-If you use `SS-Notify`, start it before `SS-Weapons`.
+### 4. vorp\_inventory v2
 
-### 4. Restart The Server
+v2 ships its own weapon degradation and component loading. To let SS-Weapons own them, set in the inventory config:
 
-After checking dependencies, start order, and config, restart the server and test one store, one gunsmith bench, one ammo box, one cleaning item, and one repair item.
+```lua
+CONFIG.USE_WEAPON_DEGRADATION = false
+CONFIG.USE_WEAPON_COMPONENTS = false
+```
+
+then set `InventoryDegradationHandled = true` in SS-Weapons. Leave `InventoryVersion = "auto"`.
+
+### 5. Restart
+
+Restart the server and test one store, one bench, one ammo box, one cleaning item and one repair item.
 
 ***
 
 ## Main Files
 
-* `fxmanifest.lua`: Resource manifest.
 * `config.lua`: Main configuration.
-* `cfg/weapons.lua`: Weapon catalog.
-* `cfg/ammo.lua`: Ammo catalog.
-* `l/l.lua`: Lua translations.
-* `config.js`: UI translations and book UI settings.
-* `c/c.lua`: Client logic.
-* `s/s.lua`: Server logic.
-* `UI/UI.html`: Weapon store and gunsmith UI.
+* `cfg/weapons.lua` / `cfg/ammo.lua`: Catalogs.
+* `cfg/anchors.lua`: Callout line positions per weapon type.
+* `cfg/presets.json`: Per-weapon camera and callout presets (saved by the server).
+* `l/l.lua`: Notification translations.
+* `config.js`: UI language and UI options.
+* `UI/`: Catalogue and gunsmith UI.
 
 ***
 
 ## Languages
 
-Languages are configured in:
-
-```text
-config.lua
-```
-
-Example:
+Set the same language in two files:
 
 ```lua
+-- config.lua
 Language = "RO"
 ```
 
-Included languages:
-
-* `EN`
-* `IT`
-* `ES`
-* `FR`
-* `DE`
-* `PT`
-* `RU`
-* `RO`
-
-Lua translations are in:
-
-```text
-l/l.lua
+```js
+// config.js
+var Config = { Language: "RO" };
 ```
 
-UI translations are in:
-
-```text
-config.js
-```
-
-***
-
-## First Configuration
-
-Open:
-
-```text
-config.lua
-```
-
-Start with:
-
-```lua
-Dev = false
-Language = "EN"
-PressKey = 0xD9D0E1C0
-WaitingAnime = true
-```
-
-* `Dev`: Keep `false` on live servers.
-* `Language`: Main script language.
-* `PressKey`: Key used to open store and gunsmith prompts.
-* `WaitingAnime`: Keeps the player in an idle animation while UI is open.
+Included: `EN`, `IT`, `ES`, `FR`, `DE`, `PT`, `RU`, `RO`.
 
 ***
 
 ## Stores
 
-Stores are configured in:
-
-```text
-config.lua
-```
-
-Each store can enable a buy catalog, a gunsmith bench, or both.
+Each store can enable the catalogue, the bench, or both:
 
 ```lua
 EnableStore = true
 EnableGunsmith = true
 ```
 
-Use these fields to control what each store sells:
+What each store sells:
 
 ```lua
-WichWeapons = false
+WichWeapons = false   -- false = all, {} = none, {"WEAPON_..."} = only listed
 WichAmmo = false
 ```
 
-Meaning:
+Custom serial / name per store:
 
-* `false`: Sell all configured weapons/ammo.
-* `{}`: Sell nothing from that type.
-* `{ "WEAPON_REVOLVER_CATTLEMAN" }`: Sell only listed entries.
+```lua
+Serial = true          -- true = paid option, false = hidden
+CustomLabel = true     -- true = paid option, false = hidden, "Text" = forced free name
+```
 
 ***
 
 ## Add A New Store
 
-Copy an existing store entry and change the name, positions, cameras, blips, and jobs.
+Copy an existing entry and change name, positions, cameras, blips and jobs:
 
 ```lua
 [5] = {
-    Cover = "coverbook",
     Name = "Annesburg",
 
     EnableStore = true,
@@ -221,6 +161,8 @@ Copy an existing store entry and change the name, positions, cameras, blips, and
     CamStore = {2947.55, 1319.71, 45.62, -90.0, 110.0, 0.0, 50.0},
     WichWeapons = false,
     WichAmmo = false,
+    Serial = true,
+    CustomLabel = true,
 
     EnableGunsmith = true,
     GunSmithBlip = 202506373,
@@ -231,157 +173,74 @@ Copy an existing store entry and change the name, positions, cameras, blips, and
 },
 ```
 
-After adding a store, restart the resource and test both prompt positions.
+Tips for the bench: `ModifyPos` is where the weapon lies, `CamGunSmith` looks straight down at it (pitch `-90.0`). Thanks to auto centering and auto fit you only need the camera roughly above the bench; the script centres and frames the weapon itself.
 
 ***
 
 ## Weapon Catalog
 
-Weapons are configured in:
-
-```text
-cfg/weapons.lua
-```
-
-Each weapon can control:
-
-* Weapon hash/name.
-* Label and title.
-* Description and extra text.
-* Category.
-* Money price.
-* Gold value.
-* Buy job restrictions.
-* Modify job restrictions.
-* Weapon type.
-
-If a weapon should only be sold to specific jobs, fill:
+`cfg/weapons.lua` controls per weapon: name / hash, label and title, description and extra text, category, price, gold value, buy jobs and grades, modify jobs and grades, type.
 
 ```lua
-BuyJobs = {"police"}
+BuyJobs = {"police"}        -- only these jobs can buy
 BuyJobsGrade = {2}
+ModifyJobs = {"Armurier"}   -- only these jobs can customize it at a bench
 ```
 
-If everyone can buy it, leave:
-
-```lua
-BuyJobs = {}
-BuyJobsGrade = {}
-```
+Empty tables mean everyone.
 
 ***
 
 ## Ammo Catalog
 
-Ammo is configured in:
-
-```text
-cfg/ammo.lua
-```
-
-Important fields:
-
-* `Item`: Inventory item name.
-* `Label`: UI label.
-* `Category`: UI category.
-* `Price`: Price per ammo box.
-* `Type`: Ammo type added to the belt.
-* `MaxAmmo`: Maximum belt amount.
-* `Amount`: Bullets added by one box.
-
-Example:
-
-```lua
-["ammorevolvernormal"] = {
-    Item = "ammorevolvernormal",
-    Label = "Revolver Normal Ammo",
-    Price = 50,
-    Type = "AMMO_REVOLVER",
-    MaxAmmo = 200,
-    Amount = 100,
-}
-```
+`cfg/ammo.lua` fields: `Item` (inventory item), `Label`, `Category`, `Price` per box, `Type` (ammo type added to the belt), `MaxAmmo` (belt limit), `Amount` (bullets per box).
 
 ***
 
 ## Buying Flow
 
-Weapon buying works like this:
-
-1. Player opens a configured store.
-2. UI displays weapons and ammo by category.
-3. Player chooses custom serial or label if the store allows it.
-4. Client asks the server if the player has money and carry space.
-5. Server gives the weapon or ammo item.
-6. Ammo boxes can later be used to add bullets to the ammo belt.
+1. Player opens a store: the catalogue shows weapons and ammo by category.
+2. Player picks an item, optionally a custom serial / name or an ammo quantity.
+3. One server call rebuilds the price from the config, checks money and carry space, charges and gives the item.
+4. Ammo boxes are used later to add bullets to the belt.
 
 ***
 
 ## Gunsmith Flow
 
-Gunsmith editing works like this:
+1. Player equips a supported weapon and walks to a bench (job checked on client and server; the bench must be free).
+2. The weapon is put away, the preview spawns on the bench and the camera glides above it. The preview is centred and framed automatically.
+3. Cards for every editable part appear with a line to the part on the weapon. Click a card to open the options drawer; pick tiles, watch the preview update, see the price per change.
+4. Templates can be saved / applied / deleted; the hammer button repairs the weapon.
+5. Confirm & pay: the server prices the difference from what is stored, charges and saves the components. Re-equip the weapon to carry the new look.
 
-1. Player equips a supported weapon.
-2. Player goes to a gunsmith bench.
-3. Script checks job access.
-4. Preview weapon spawns on the bench.
-5. UI opens component notes and selections.
-6. Player changes components and sees the price update.
-7. Server syncs preview changes to nearby spectators if enabled.
-8. Player pays and saves components to the weapon loadout.
+***
+
+## Weapon Presets (camera + callouts per weapon)
+
+If a weapon sits too small, off centre, or a callout points beside its part:
+
+1. Set `Dev = true`, equip the weapon and open a bench. The **Weapon preset** panel appears bottom-left.
+2. **Camera**: pan left / right, pan up / down, distance, turn and FOV move the camera; **Weapon turn** rotates the weapon on the bench; **Reset cam** drops the changes.
+3. **Anchor**: pick a part and nudge it Right / Forward / Up until the ring sits on the right spot. Only moved parts are stored.
+4. **Save preset** writes camera + moved anchors for this weapon to `cfg/presets.json` and sends them to all clients. **Delete preset** removes them. **Print table** prints values and model diagnostics to F8.
+5. Ship `cfg/presets.json` with the resource and set `Dev = false` again.
 
 ***
 
 ## Gunsmith Prices
 
-Gunsmith prices are configured in:
-
-```lua
-GunSmith = {
-    ["GRIP"] = {
-        ["COMP"] = 45,
-        ["MATERIAL"] = 20,
-        ["ENGRAVE"] = 20,
-        ["ENGRAVEM"] = 20,
-        ["TINT"] = 20,
-    },
-}
-```
-
-Payment type:
-
-```lua
-WeaponEditPayment = {
-    Type = "gold",
-}
-```
-
-Use `gold` or `money`.
+Prices per part category and edit type live in `Config.GunSmith`; payment type in `WeaponEditPayment.Type` (`gold` or `money`). See Configuration File for the full table.
 
 ***
 
 ## Gunsmith Templates
 
-Templates let players save, apply, and delete weapon component setups.
-
-Stored table:
-
-```text
-ss_weaponstemp
-```
-
-Templates are saved by:
-
-* Identifier.
-* Character ID.
-* Weapon.
-* Template name.
+Players save, apply and delete component setups. Stored in `ss_weaponstemp` by identifier, character ID, weapon and template name.
 
 ***
 
 ## Weapon Cleaning
-
-Cleaning settings:
 
 ```lua
 CleanWeaponItem = "leather"
@@ -391,13 +250,11 @@ MinCleanWeaponTime = 2500
 InspectWeaponCommand = "w_inspect"
 ```
 
-Cleaning uses the native weapon inspection flow and can reduce dirt, soot, and runtime degradation.
+Use the clean item (or `/w_inspect`) with the weapon in hand: the native inspection opens, the clean prompt removes dirt / soot / degradation and adds a little permanent wear. `/w_inspectstatus` prints why inspection is blocked, `/w_inspectreset` frees a stuck interaction.
 
 ***
 
 ## Weapon Repair
-
-Repair settings:
 
 ```lua
 WeaponRepair = {
@@ -409,115 +266,52 @@ WeaponRepair = {
 }
 ```
 
-Repair reduces permanent rust/damage stored by the script.
+Repair is started from the editor and lowers the permanent wear stored on the server.
 
 ***
 
 ## Weapon Wear
 
-Stored table:
-
-```text
-ss_weapons
-```
-
-The script stores:
-
-* Serial number.
-* Weapon name.
-* Last loadout ID.
-* Dirt level.
-* Soot level.
-* Condition level.
-* Damage level.
-* Rust/permanent wear level.
-
-When `UseDegradation = true`, permanent wear can eventually make a weapon unusable.
+`ss_weapons` stores per serial: weapon name, last loadout ID, dirt, soot, condition, damage and permanent wear. Wear sent by clients can only grow; only cleaning and repair lower it. With `UseDegradation = true` a weapon at 100% permanent wear cannot fire.
 
 ***
 
 ## Weapon HUD
 
-Weapon HUD settings:
-
 ```lua
-WeaponHud = {
-    Enabled = false,
-    Position = "top-right",
-    UpdateInterval = 150,
-    HideWhenUiOpen = true,
-}
+WeaponHud = { Enabled = false, Position = "top-right", UpdateInterval = 150, HideWhenUiOpen = true }
 ```
 
-Weapon icons are loaded from:
-
-```text
-UI/img/weapons
-```
-
-Ammo icons are loaded from:
-
-```text
-UI/img/ammo_types
-```
+Icons: `UI/img/weapons` (lower-case weapon name) and `UI/img/ammo_types`.
 
 ***
 
-## Preview Sync
-
-Preview sync settings:
+## Preview Sync & Bench Lock
 
 ```lua
-PreviewSync = {
-    Enabled = true,
-    Radius = 8.0,
-    MaxSpectators = 6,
-    CheckInterval = 2000,
-}
+PreviewSync = { Enabled = true, Radius = 8.0, MaxSpectators = 6, CheckInterval = 2000 }
 ```
 
-When enabled, nearby players can see the gunsmith preview weapon while someone edits it.
+Nearby players see the preview while someone edits. A bench in use is locked: others get "This workbench is being used by someone else" until the player leaves, pays or disconnects.
 
 ***
 
 ## Poison & Tranquilizer
-
-These systems are disabled by default:
 
 ```lua
 ActivePoison = false
 ActiveTranq = false
 ```
 
-Enable them only if your server intentionally uses poison arrow or tranquilizer gameplay.
+Disabled by default; enable only if your server uses poison arrows or tranquilizer gameplay.
 
 ***
 
-## Dev Commands
+## Dev Commands & Tools
 
-These commands are only for testing and require:
+With `Dev = true`: `/dirtyweapon`, `/wstatus`, `/wdirt`, `/wsoot`, `/wdegradation`, `/wdamage`, `/wthreshold`, `/wwear`, `/wresetwear`, the Weapon preset panel, and `[SS-Weapons][Equip]` / `[SS-Weapons][Anchors]` prints in F8.
 
-```lua
-Dev = true
-```
-
-Commands:
-
-* `/dirtyweapon`
-* `/wstatus`
-* `/wdirt`
-* `/wsoot`
-* `/wdegradation`
-* `/wdamage`
-* `/wthreshold`
-* `/wwear`
-* `/wresetwear`
-
-Normal inspect command:
-
-```text
-/w_inspect
-```
+Always available: `/w_inspect`, `/w_inspectstatus`, `/w_inspectreset`.
 
 ***
 
@@ -525,117 +319,66 @@ Normal inspect command:
 
 ### Store Prompt Does Not Appear
 
-Check:
+* `EnableStore = true`, `CatalogWeapon` coordinates, `PressKey`, folder named `SS-Weapons`.
 
-* `EnableStore = true`.
-* `CatalogWeapon` coordinates.
-* `PressKey`.
-* Resource folder name is exactly `SS-Weapons`.
+### Bench Prompt Does Not Appear
 
-### Gunsmith Prompt Does Not Appear
+* `EnableGunsmith = true`, `ModifyWeapons` coordinates, player job in `Jobs`.
 
-Check:
+### "Re-equip the weapon"
 
-* `EnableGunsmith = true`.
-* `ModifyWeapons` coordinates.
-* Player job is allowed in `Jobs`.
+* Equip the weapon once from the inventory so the script receives it. Weapons received at character select are dressed when drawn. On v2, draw the weapon you want to edit before pressing the prompt.
 
-### Player Cannot Edit Weapon
+### "This workbench is being used by someone else"
 
-Check:
+* Another player has the bench open. Locks are released on leave / pay / disconnect and expire on their own.
 
-* Weapon is equipped.
-* Weapon is supported by component data.
-* Player re-equipped the weapon after receiving it.
-* Job restrictions allow the player.
+### Wrong Weapon On The Bench / Mods Not Applied (vorp\_inventory v2)
+
+* Make sure the server runs the current `c/c.lua` and `s/s.lua`, `InventoryVersion = "auto"`, and v2 has `USE_WEAPON_DEGRADATION = false` and `USE_WEAPON_COMPONENTS = false`.
+
+### Callout Lines In The Wrong Place
+
+* Tune the weapon in the Dev preset panel and Save preset; check `SideSign` / `MuzzleAtPositiveEnd` in `cfg/anchors.lua` if a whole weapon type is mirrored.
 
 ### Player Cannot Buy
 
-Check:
-
-* Player has enough money.
-* Carry limits from `SS-Core`.
-* Weapon exists in `cfg/weapons.lua`.
-* Ammo exists in `cfg/ammo.lua`.
+* Money, carry limits from `SS-Core`, item exists in `cfg/weapons.lua` / `cfg/ammo.lua`, player stands at the counter, custom name within `MinLabel` / `MaxLabel`.
 
 ### Ammo Item Does Not Add Bullets
 
-Check:
-
-* Ammo item name matches the inventory item.
-* `Type` is correct.
-* Belt is not already full.
-* `MaxAmmo` and `Amount` are correct.
+* Ammo item name matches the inventory item, `Type` is correct, belt not full, `MaxAmmo` / `Amount` correct.
 
 ### Weapon HUD Image Is Missing
 
-Check:
-
-* Weapon image exists in `UI/img/weapons`.
-* File name matches the lower-case weapon name.
-* Ammo icon exists in `UI/img/ammo_types`.
+* Image exists in `UI/img/weapons` with the lower-case weapon name; ammo icon exists in `UI/img/ammo_types`.
 
 ### Cleaning Does Not Work
 
-Check:
-
-* Player has `CleanWeaponItem`.
-* Weapon is equipped.
-* Native inspection starts.
-* `RemoveAfterClean` is configured correctly.
+* Player has `CleanWeaponItem`, weapon in hand, run `/w_inspectstatus` for the exact blocker.
 
 ### Repair Does Not Work
 
-Check:
-
-* `WeaponRepair.Enabled = true`.
-* Player has the repair item.
-* Weapon has at least `MinRustRequired` permanent damage.
+* `WeaponRepair.Enabled = true`, player has the repair item, weapon has at least `MinRustRequired` permanent wear.
 
 ***
 
 ## Recommended Live Checklist
 
-Before going live, confirm:
-
-* `ghmattimysql` starts before `SS-Weapons`.
-* `vorp_inventory` starts before `SS-Weapons`.
-* `SS-Core` starts before `SS-Weapons`.
-* Resource folder is named `SS-Weapons`.
+* `ghmattimysql`, `vorp_inventory`, `SS-Core` start before `SS-Weapons`.
+* Resource folder named `SS-Weapons`.
 * `Dev = false`.
-* Stores open correctly.
-* Gunsmith benches open correctly.
-* Weapon buying works.
-* Ammo buying and ammo item usage work.
-* Gunsmith edit/save works.
-* Template save/apply/delete works.
-* Weapon cleaning works.
-* Weapon repair works.
-* Weapon HUD works if enabled.
-* Preview sync works if enabled.
+* Same language in `config.lua` and `config.js`.
+* `cfg/presets.json` shipped.
+* Stores, benches, buying, ammo, edit / pay, templates, cleaning, repair, HUD and preview sync tested.
 
 ***
 
 ## Editing Rules For Beginners
 
-When editing Lua:
-
-* Strings use quotes: `"text"`.
-* Table entries usually end with a comma: `,`.
-* `true` enables a feature.
-* `false` disables a feature or means all/everyone depending on the field.
-* Numbers do not use quotes.
-* Coordinates use `{x, y, z}` or `{x, y, z, heading}` style.
+* Strings use quotes: `"text"`. Table entries end with a comma.
+* `true` enables a feature; `false` disables it or means all / everyone depending on the field.
+* Numbers do not use quotes. Coordinates use `{x, y, z}` or `{x, y, z, heading}`.
 * Do not rename the resource folder.
 
-Bad:
-
-```lua
-Dev = "false"
-```
-
-Good:
-
-```lua
-Dev = false
-```
+Bad: `Dev = "false"` — Good: `Dev = false`
