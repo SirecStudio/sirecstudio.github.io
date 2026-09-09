@@ -317,6 +317,20 @@ GunSmith = {
 * `COMP`: Physical component. `MATERIAL`: Metal / material. `ENGRAVE`: Engraving pattern. `ENGRAVEM`: Engraving metal. `TINT`: Colour.
 * A price is charged once per changed entry; the server computes the total from the stored components.
 
+Every price can also pick its own currency, including items:
+
+```lua
+["SCOPE"] = {
+    ["COMP"]     = {Type = "item",  Item = "scope_lens", Amount = 1, Label = "Scope Lens"},
+    ["MATERIAL"] = {Type = "money", Amount = 10},
+    ["ENGRAVE"]  = {Type = "gold",  Amount = 0.5},
+    ["ENGRAVEM"] = 10, -- plain number = WeaponEditPayment.Type
+},
+```
+
+* `Type`: `gold`, `money` or `item`. `Amount`: how much / how many. `Item` + `Label`: the inventory item and the name shown in the editor.
+* Mixed costs add up per currency (for example `12 Gold · $30 · 1x Scope Lens`). The player must have all of it before anything is taken; the editor shows the cost on every card, in every options group and in the total.
+
 ***
 
 ## Poison & Tranquilizer

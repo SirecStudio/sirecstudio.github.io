@@ -65,6 +65,14 @@ SS-Weapons V1.1 rebuilds the whole gunsmith experience. The old book UI is repla
 
 ***
 
+## Gunsmith Costs (NEW)
+
+* Every `Config.GunSmith` price can now choose its currency: a plain number (charged in `WeaponEditPayment.Type` as before) or `{Type = "gold" | "money" | "item", Amount, Item, Label}`. A scope can require an item, its engraving gold and its material cash.
+* Mixed costs are added up per currency, shown on each card, in each options group and in the total (`12 Gold · $30 · 1x Scope Lens`), and the server checks the whole amount before taking anything.
+* The bench prompt text and the last hardcoded notifications are now translated in all 8 languages.
+
+***
+
 ## Store Options
 
 * `Serial` and `CustomLabel` per store are now honoured on client and server: `true` = paid option, `false` = hidden, `"Text"` = every weapon sold there gets that name for free.
