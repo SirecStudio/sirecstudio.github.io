@@ -30,6 +30,7 @@
   * [Configuration File](ss-weapons/configuration-file.md)
   * [Configuration Helps](ss-weapons/configuration-helps.md)
   * [Change logs](ss-weapons/change-logs.md)
+    * [SS-Weapons V1.1](ss-weapons/change-logs/ss-weapons-v1.1.md)
     * [SS-Weapons V1.0](ss-weapons/change-logs/ss-weapons-v1.0.md)
 * [SS-Farming](ss-farming.md)
 * [SS-IdentityCard](ss-identitycard.md)
