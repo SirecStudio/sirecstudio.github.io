@@ -52,7 +52,7 @@ SS-Weapons V1.1 rebuilds the whole gunsmith experience. The old book UI is repla
 ## One Player Per Bench
 
 * A bench in use is locked: another player gets "This workbench is being used by someone else" and can neither replace nor watch the current preview.
-* Locks are released on Cancel, Confirm & pay and disconnect, and expire on their own if a player leaves mid-way.
+* Locks are released on Cancel, Confirm & pay and disconnect. A lock whose owner crashed, walked away from the bench (`Config.BenchLock.MaxDistance`) or sat in the editor too long (`Config.BenchLock.MaxMinutes`) is dropped automatically, and `w_freebench` in the server console frees a bench by hand.
 
 ***
 

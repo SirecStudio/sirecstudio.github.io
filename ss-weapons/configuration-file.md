@@ -241,7 +241,20 @@ PreviewSync = {
 }
 ```
 
-Nearby players inside `Radius` see the preview weapon while someone edits it. A bench is locked to one player at a time.
+Nearby players inside `Radius` see the preview weapon while someone edits it.
+
+***
+
+## Bench Lock
+
+```lua
+BenchLock = {
+    MaxDistance = 6.0,
+    MaxMinutes = 15,
+}
+```
+
+A bench is locked to one player at a time. The lock is released on Cancel, Confirm & pay and disconnect, and dropped automatically when the owner crashes, walks farther than `MaxDistance` metres from the bench or stays in the editor longer than `MaxMinutes` (`0` disables a check). `w_freebench [Store Name]` in the server console frees a stuck bench by hand.
 
 ***
 
